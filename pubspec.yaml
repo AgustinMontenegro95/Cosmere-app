@@ -14,9 +14,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-
+  
+  responsive_framework:
   cupertino_icons: ^1.0.2
+  avatar_glow:
 
 dev_dependencies:
   flutter_test:
