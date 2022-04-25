@@ -1,5 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -1011,46 +1012,59 @@ class _HomeState extends State<Home> {
               margin: const EdgeInsets.only(top: 45),
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  color: Colors.white,
+                  color: Colors.black,
                   borderRadius: BorderRadius.circular(20),
                   // ignore: prefer_const_literals_to_create_immutables
                   boxShadow: [
                     const BoxShadow(
-                        color: Colors.black,
+                        color: Color.fromARGB(255, 133, 125, 125),
                         offset: Offset(0, 10),
                         blurRadius: 10),
                   ]),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Text(
-                    titulo.toString(),
-                    style: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.w600),
+                  SizedBox(height: 50),
+                  FittedBox(
+                    fit: BoxFit.cover,
+                    child: Text(
+                      titulo.toString(),
+                      style: GoogleFonts.trispace(
+                        textStyle: const TextStyle(
+                            fontSize: 35,
+                            color: Colors.white,
+                            letterSpacing: .5),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
-                  Text(
-                    des.toString(),
-                    style: const TextStyle(fontSize: 14),
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(des.toString(),
+                        style: GoogleFonts.trispace(
+                          textStyle: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              letterSpacing: .5),
+                        ),
+                        textAlign: TextAlign.justify),
                   ),
                   const SizedBox(
                     height: 22,
                   ),
-                  leido(setState, b),
+                  Theme(
+                      data: ThemeData(unselectedWidgetColor: Colors.white),
+                      child: leido(setState, b)),
                   Align(
-                    alignment: Alignment.bottomRight,
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text(
-                          "Cerrar",
-                          style: TextStyle(fontSize: 18),
-                        )),
-                  ),
+                      alignment: Alignment.bottomRight,
+                      child: IconButton(
+                          color: Colors.white,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.arrow_forward_ios))),
                 ],
               ),
             ),
@@ -1082,7 +1096,7 @@ class _HomeState extends State<Home> {
             value: elantris,
             title: Text(
               elantris ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (elantris) async {
               setState(() {
@@ -1098,7 +1112,7 @@ class _HomeState extends State<Home> {
             value: almaEmperador,
             title: Text(
               almaEmperador ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (almaEmperador) async {
               setState(() {
@@ -1114,7 +1128,7 @@ class _HomeState extends State<Home> {
             value: esperanzaElantris,
             title: Text(
               esperanzaElantris ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (esperanzaElantris) async {
               setState(() {
@@ -1131,7 +1145,7 @@ class _HomeState extends State<Home> {
             value: undecimoMetal,
             title: Text(
               undecimoMetal ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (undecimoMetal) async {
               setState(() {
@@ -1147,7 +1161,7 @@ class _HomeState extends State<Home> {
             value: imperioFinal,
             title: Text(
               imperioFinal ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (imperioFinal) async {
               setState(() {
@@ -1163,7 +1177,7 @@ class _HomeState extends State<Home> {
             value: pozoAsencion,
             title: Text(
               pozoAsencion ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (pozoAsencion) async {
               setState(() {
@@ -1179,7 +1193,7 @@ class _HomeState extends State<Home> {
             value: alomante,
             title: Text(
               alomante ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (alomante) async {
               setState(() {
@@ -1195,7 +1209,7 @@ class _HomeState extends State<Home> {
             value: aley,
             title: Text(
               aley ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (aley) async {
               setState(() {
@@ -1211,7 +1225,7 @@ class _HomeState extends State<Home> {
             value: sombrasIdentidad,
             title: Text(
               sombrasIdentidad ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (sombrasIdentidad) async {
               setState(() {
@@ -1227,7 +1241,7 @@ class _HomeState extends State<Home> {
             value: braDuelos,
             title: Text(
               braDuelos ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (braDuelos) async {
               setState(() {
@@ -1243,7 +1257,7 @@ class _HomeState extends State<Home> {
             value: heroeEras,
             title: Text(
               heroeEras ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (heroeEras) async {
               setState(() {
@@ -1259,7 +1273,7 @@ class _HomeState extends State<Home> {
             value: historiaSecreta,
             title: Text(
               historiaSecreta ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (historiaSecreta) async {
               setState(() {
@@ -1274,7 +1288,7 @@ class _HomeState extends State<Home> {
             value: alientoDioses,
             title: Text(
               alientoDioses ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (alientoDioses) async {
               setState(() {
@@ -1289,7 +1303,7 @@ class _HomeState extends State<Home> {
             value: caminoReyes,
             title: Text(
               caminoReyes ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (caminoReyes) async {
               setState(() {
@@ -1304,7 +1318,7 @@ class _HomeState extends State<Home> {
             value: palabrasRadiantes,
             title: Text(
               palabrasRadiantes ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (palabrasRadiantes) async {
               setState(() {
@@ -1319,7 +1333,7 @@ class _HomeState extends State<Home> {
             value: danzante,
             title: Text(
               danzante ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (danzante) async {
               setState(() {
@@ -1334,7 +1348,7 @@ class _HomeState extends State<Home> {
             value: juramentada,
             title: Text(
               juramentada ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (juramentada) async {
               setState(() {
@@ -1349,7 +1363,7 @@ class _HomeState extends State<Home> {
             value: esquirlas,
             title: Text(
               esquirlas ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (esquirlas) async {
               setState(() {
@@ -1364,7 +1378,7 @@ class _HomeState extends State<Home> {
             value: ritmoGuerra,
             title: Text(
               ritmoGuerra ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (ritmoGuerra) async {
               setState(() {
@@ -1379,7 +1393,7 @@ class _HomeState extends State<Home> {
             value: ocaso,
             title: Text(
               ocaso ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (ocaso) async {
               setState(() {
@@ -1394,7 +1408,7 @@ class _HomeState extends State<Home> {
             value: arena,
             title: Text(
               arena ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (arena) async {
               setState(() {
@@ -1409,7 +1423,7 @@ class _HomeState extends State<Home> {
             value: silencio,
             title: Text(
               silencio ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (silencio) async {
               setState(() {
@@ -1425,7 +1439,7 @@ class _HomeState extends State<Home> {
             value: elantris,
             title: Text(
               elantris ? "Leido" : "Aun no Leido",
-              style: const TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (elantris) {
               setState(() {
