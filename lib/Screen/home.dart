@@ -1,5 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -590,7 +591,7 @@ class _HomeState extends State<Home> {
                             context,
                             "Juramentada ",
                             "Juramentada es la tercera entrega del Archivo de las Tormentas.",
-                            "jugamentada.jpg",
+                            "juramentada.jpg",
                             "linkEbay",
                             elantris);
                       });
@@ -771,6 +772,40 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
+        //Soludev
+        Positioned(
+          bottom: 5,
+          left: 140,
+          child: Row(
+            children: [
+              Icon(
+                Icons.developer_mode_rounded,
+                color: Colors.white,
+                size: 25,
+              ),
+              Text(
+                "Impulsado por: ",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              SizedBox(
+                width: 70,
+                height: 70,
+                child: GestureDetector(
+                  onTap: () async {
+                    final Uri _url = Uri.parse('https://soludevs.web.app');
+                    if (await canLaunchUrl(_url)) {
+                      await launchUrl(_url);
+                    } else {
+                      throw 'No se pudo inciar $_url';
+                    }
+                  },
+                  child: Image(
+                      image: AssetImage('assets/images/soludev_logo_mono.png')),
+                ),
+              )
+            ],
+          ),
+        )
       ],
     )));
   }
@@ -847,15 +882,19 @@ class _HomeState extends State<Home> {
               ),
             ),
             Positioned(
-              left: 20,
-              right: 20,
-              child: CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  radius: 45,
-                  child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(45)),
-                      child: Image.asset("assets/images/$img")) //va imagen,
+              left: 70,
+              right: 70,
+              child: SizedBox(
+                width: 20,
+                height: 140,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(45)),
+                  child: Image(
+                    image: AssetImage('assets/images/$img'),
+                    fit: BoxFit.cover,
                   ),
+                ),
+              ),
             ),
           ],
         ),
