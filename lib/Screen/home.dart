@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -229,15 +231,14 @@ class _HomeState extends State<Home> {
 
   void tutorial() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print('sadsadadas');
+
     if (prefs.getBool('tutorial') == null) {
-      print('sadsadadas');
       WidgetsBinding.instance!.addPostFrameCallback(_layout);
     }
   }
 
   void _layout(_) {
-    Future.delayed(Duration(milliseconds: 100));
+    Future.delayed(const Duration(milliseconds: 100));
     showTutorial();
   }
 
@@ -333,7 +334,7 @@ class _HomeState extends State<Home> {
                   Padding(
                     padding: EdgeInsets.only(top: 10.0),
                     child: Text(
-                      "Sigue las líneas para una lectura de acuerdo al orden recomendado. Sin embargo, se puedo comenzar por 'El imperio final' o 'El aliento de los dioses'.",
+                      "Sigue las líneas para una lectura de acuerdo al orden recomendado. Sin embargo, se puede comenzar por 'El imperio final' o 'El aliento de los dioses'.",
                       style: TextStyle(color: Colors.white),
                       textAlign: TextAlign.justify,
                     ),
@@ -377,7 +378,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Text(
-                    "«Arcanum Ilimitado» es una antología de relatos que recopila las historias relacionadas con el Cosmere que Brandon Sanderson ha publicado a lo largo de los años.\nAunque algunos son relatos independientes que se pueden disfrutar por separado, pero otras requieren haber leído previamente algunas novelas del Cosmere. Leelos siguiendo las líneas blancas.",
+                    "«Arcanum Ilimitado» es una antología de relatos que recopila las historias relacionadas con el Cosmere que Brandon Sanderson ha publicado a lo largo de los años.\nAunque algunos son relatos independientes que se pueden disfrutar por separado, otras requieren haber leído previamente algunas novelas del Cosmere. Leelos siguiendo las líneas blancas.",
                     style: TextStyle(color: Colors.white),
                     textAlign: TextAlign.justify,
                   ),
@@ -463,6 +464,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: elantris
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             elantris ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -496,10 +500,13 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: almaEmperador
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor: almaEmperador
                             ? Colors.green[300]
                             : Colors.grey[100],
-                        radius: 20.0,
+                        radius: 15.0,
                       ),
                     ),
                   ),
@@ -530,10 +537,13 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: esperanzaElantris
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor: esperanzaElantris
                             ? Colors.green[300]
                             : Colors.grey[100],
-                        radius: 20.0,
+                        radius: 15.0,
                       ),
                     ),
                   ),
@@ -564,10 +574,13 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: undecimoMetal
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor: undecimoMetal
                             ? Colors.green[300]
                             : Colors.grey[100],
-                        radius: 20.0,
+                        radius: 15.0,
                       ),
                     ),
                   ),
@@ -599,6 +612,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: imperioFinal
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             imperioFinal ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -633,6 +649,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: pozoAsencion
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             pozoAsencion ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -666,9 +685,12 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: alomante
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             alomante ? Colors.green[300] : Colors.grey[100],
-                        radius: 20.0,
+                        radius: 15.0,
                       ),
                     ),
                   ),
@@ -700,6 +722,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: aley
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             aley ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -734,6 +759,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: sombrasIdentidad
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor: sombrasIdentidad
                             ? Colors.green[300]
                             : Colors.grey[100],
@@ -769,6 +797,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: braDuelos
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             braDuelos ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -803,6 +834,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: heroeEras
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             heroeEras ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -836,10 +870,13 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: historiaSecreta
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor: historiaSecreta
                             ? Colors.green[300]
                             : Colors.grey[100],
-                        radius: 20.0,
+                        radius: 15.0,
                       ),
                     ),
                   ),
@@ -872,6 +909,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: alientoDioses
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor: alientoDioses
                             ? Colors.green[300]
                             : Colors.grey[100],
@@ -907,6 +947,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: caminoReyes
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             caminoReyes ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -941,6 +984,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: palabrasRadiantes
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor: palabrasRadiantes
                             ? Colors.green[300]
                             : Colors.grey[100],
@@ -975,9 +1021,12 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: danzante
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             danzante ? Colors.green[300] : Colors.grey[100],
-                        radius: 20.0,
+                        radius: 15.0,
                       ),
                     ),
                   ),
@@ -1009,6 +1058,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: juramentada
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             juramentada ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -1043,6 +1095,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: esquirlas
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             esquirlas ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -1077,6 +1132,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: ritmoGuerra
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             ritmoGuerra ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -1110,9 +1168,12 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: ocaso
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             ocaso ? Colors.green[300] : Colors.grey[100],
-                        radius: 20.0,
+                        radius: 15.0,
                       ),
                     ),
                   ),
@@ -1143,6 +1204,9 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: arena
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             arena ? Colors.green[300] : Colors.grey[100],
                         radius: 20.0,
@@ -1176,9 +1240,12 @@ class _HomeState extends State<Home> {
                             });
                       },
                       child: CircleAvatar(
+                        child: silencio
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         backgroundColor:
                             silencio ? Colors.green[300] : Colors.grey[100],
-                        radius: 20.0,
+                        radius: 15.0,
                       ),
                     ),
                   ),
@@ -1204,13 +1271,12 @@ class _HomeState extends State<Home> {
                       height: 70,
                       child: GestureDetector(
                         onTap: () async {
-                          final Uri _url =
-                              Uri.parse('https://soludevs.web.app');
-                          if (await canLaunchUrl(_url)) {
-                            await launchUrl(_url);
-                          } else {
-                            throw 'No se pudo inciar $_url';
-                          }
+                          const url = "https://soludevs.web.app/";
+                          if (await canLaunch(url))
+                            await launch(url);
+                          else
+                            // can't launch url, there is some error
+                            throw "Could not launch $url";
                         },
                         child: const Image(
                             image: AssetImage(
