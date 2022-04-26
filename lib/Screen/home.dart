@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -41,7 +42,16 @@ class _HomeState extends State<Home> {
       ocaso = false,
       silencio = false,
       arena = false;
-  void obtenerCategoria() async {
+
+  late TutorialCoachMark tutorialCoachMark;
+  List<TargetFocus> targets = [];
+
+  GlobalKey key = GlobalKey();
+  final GlobalKey _key1 = GlobalKey();
+  final GlobalKey _key2 = GlobalKey();
+  final GlobalKey _key3 = GlobalKey();
+
+  void obtenerLibros() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getBool('elantris') == null) {
       elantris = false;
@@ -201,7 +211,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    obtenerCategoria();
+    obtenerLibros();
     _scrollController = ScrollController()
       ..addListener(() {
         setState(() {
@@ -212,9 +222,171 @@ class _HomeState extends State<Home> {
           }
         });
       });
+    initTargets();
+    tutorial();
+    super.initState();
+  }
 
-    super.initState();
-    super.initState();
+  void tutorial() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print('sadsadadas');
+    if (prefs.getBool('tutorial') == null) {
+      print('sadsadadas');
+      WidgetsBinding.instance!.addPostFrameCallback(_layout);
+    }
+  }
+
+  void _layout(_) {
+    Future.delayed(Duration(milliseconds: 100));
+    showTutorial();
+  }
+
+  void showTutorial() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    tutorialCoachMark = TutorialCoachMark(
+      context,
+      targets: targets,
+      colorShadow: Colors.black,
+      textSkip: "SKIP",
+      paddingFocus: 10,
+      opacityShadow: 0.8,
+      onFinish: () {
+        prefs.setBool('tutorial', true);
+        print("finish");
+      },
+      onClickTarget: (target) {
+        print('onClickTarget: $target');
+      },
+      onSkip: () {
+        prefs.setBool('tutorial', true);
+        print("skip");
+      },
+      onClickOverlay: (target) {
+        print('onClickOverlay: $target');
+      },
+    )..show();
+  }
+
+  void initTargets() {
+    targets.add(
+      TargetFocus(
+        identify: "Target 0",
+        keyTarget: _key1,
+        enableOverlayTab: true,
+        contents: [
+          TargetContent(
+              align: ContentAlign.bottom,
+              child: Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const <Widget>[
+                    Text(
+                      "ALMACENA TU PROGRESO",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 20.0),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 10.0),
+                      child: Text(
+                        "Accede a la descripción de cada libro, marca los completados y guarda tu progreso.",
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: SizedBox(
+                          width: 50,
+                          child: Image(
+                              image: AssetImage('assets/images/guardado.png'))),
+                    )
+                  ],
+                ),
+              ))
+        ],
+      ),
+    );
+    targets.add(
+      TargetFocus(
+        identify: "Target 1",
+        keyTarget: _key2,
+        //color: Colors.red,
+        contents: [
+          TargetContent(
+            align: ContentAlign.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const <Widget>[
+                  Text(
+                    "LÍNEA TEMPORAL DEL COSMERE",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      "Sigue las líneas para una lectura de acuerdo al orden recomendado. Sin embargo, se puedo comenzar por 'El imperio final' o 'El aliento de los dioses'.",
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+        shape: ShapeLightFocus.RRect,
+        enableOverlayTab: true,
+        radius: 5,
+      ),
+    );
+    targets.add(TargetFocus(
+      identify: "Target 2",
+      keyTarget: _key3,
+      enableOverlayTab: true,
+      contents: [
+        TargetContent(
+            align: ContentAlign.top,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 20),
+                    child: SizedBox(
+                        width: 150,
+                        child: Image(
+                            image: AssetImage('assets/images/Arcanum.png'))),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 20.0),
+                    child: Text(
+                      "ARCANUM ILIMITADO",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0),
+                    ),
+                  ),
+                  Text(
+                    "«Arcanum Ilimitado» es una antología de relatos que recopila las historias relacionadas con el Cosmere que Brandon Sanderson ha publicado a lo largo de los años.\nAunque algunos son relatos independientes que se pueden disfrutar por separado, pero otras requieren haber leído previamente algunas novelas del Cosmere. Leelos siguiendo las líneas blancas.",
+                    style: TextStyle(color: Colors.white),
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
+            ))
+      ],
+      shape: ShapeLightFocus.Circle,
+    ));
   }
 
   @override
@@ -250,7 +422,22 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
+              // fechas amarillas
               Positioned(
+                  key: _key2,
+                  top: 247,
+                  left: 257,
+                  child: const SizedBox(width: 20, height: 20)),
+              Positioned(
+                  key: _key3,
+                  top: 445,
+                  left: 195,
+                  child: const SizedBox(
+                    width: 20,
+                    height: 20,
+                  )),
+              Positioned(
+                key: _key1,
                 top: 70,
                 left: 170,
                 child: AvatarGlow(
@@ -1074,7 +1261,7 @@ class _HomeState extends State<Home> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   FittedBox(
                     fit: BoxFit.cover,
                     child: Text(
@@ -1091,7 +1278,7 @@ class _HomeState extends State<Home> {
                     height: 15,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(des.toString(),
                         style: GoogleFonts.trispace(
                           textStyle: const TextStyle(
@@ -1114,7 +1301,7 @@ class _HomeState extends State<Home> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          icon: Icon(Icons.arrow_forward_ios))),
+                          icon: const Icon(Icons.arrow_forward_ios))),
                 ],
               ),
             ),
