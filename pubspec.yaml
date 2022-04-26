@@ -21,14 +21,17 @@ dependencies:
   url_launcher: ^6.1.0
   shared_preferences: ^2.0.13
   google_fonts: ^2.3.2
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^1.0.0
+  flutter_native_splash: ^2.1.6
 
-
+flutter_native_splash:
+  color: "#000000"
+  image: assets/images/splash_screen.png
 
 flutter:
 

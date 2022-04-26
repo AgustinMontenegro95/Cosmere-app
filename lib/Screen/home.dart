@@ -1037,6 +1037,7 @@ class _HomeState extends State<Home> {
       floatingActionButton: _showBackToTopButton == false
           ? null
           : FloatingActionButton(
+              backgroundColor: Colors.blueGrey[800],
               onPressed: _scrollToTop,
               child: const Icon(Icons.arrow_upward),
             ),
@@ -1104,7 +1105,7 @@ class _HomeState extends State<Home> {
                   ),
                   Theme(
                       data: ThemeData(unselectedWidgetColor: Colors.white),
-                      child: leido(setState, b)),
+                      child: libro(setState, b)),
                   Align(
                       alignment: Alignment.bottomRight,
                       child: IconButton(
@@ -1137,13 +1138,15 @@ class _HomeState extends State<Home> {
     );
   }
 
-  CheckboxListTile leido(StateSetter setState, int b) {
+  CheckboxListTile libro(StateSetter setState, int b) {
     switch (b) {
       case 1:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: elantris,
             title: Text(
-              elantris ? "Leido" : "Aun no Leido",
+              elantris ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (elantris) async {
@@ -1157,9 +1160,11 @@ class _HomeState extends State<Home> {
             });
       case 2:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: almaEmperador,
             title: Text(
-              almaEmperador ? "Leido" : "Aun no Leido",
+              almaEmperador ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (almaEmperador) async {
@@ -1173,9 +1178,11 @@ class _HomeState extends State<Home> {
             });
       case 3:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: esperanzaElantris,
             title: Text(
-              esperanzaElantris ? "Leido" : "Aun no Leido",
+              esperanzaElantris ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (esperanzaElantris) async {
@@ -1190,9 +1197,11 @@ class _HomeState extends State<Home> {
 
       case 4:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: undecimoMetal,
             title: Text(
-              undecimoMetal ? "Leido" : "Aun no Leido",
+              undecimoMetal ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (undecimoMetal) async {
@@ -1206,9 +1215,11 @@ class _HomeState extends State<Home> {
             });
       case 5:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: imperioFinal,
             title: Text(
-              imperioFinal ? "Leido" : "Aun no Leido",
+              imperioFinal ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (imperioFinal) async {
@@ -1222,9 +1233,11 @@ class _HomeState extends State<Home> {
             });
       case 6:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: pozoAsencion,
             title: Text(
-              pozoAsencion ? "Leido" : "Aun no Leido",
+              pozoAsencion ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (pozoAsencion) async {
@@ -1238,9 +1251,11 @@ class _HomeState extends State<Home> {
             });
       case 7:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: alomante,
             title: Text(
-              alomante ? "Leido" : "Aun no Leido",
+              alomante ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (alomante) async {
@@ -1254,9 +1269,11 @@ class _HomeState extends State<Home> {
             });
       case 8:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: aley,
             title: Text(
-              aley ? "Leido" : "Aun no Leido",
+              aley ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (aley) async {
@@ -1270,9 +1287,11 @@ class _HomeState extends State<Home> {
             });
       case 9:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: sombrasIdentidad,
             title: Text(
-              sombrasIdentidad ? "Leido" : "Aun no Leido",
+              sombrasIdentidad ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (sombrasIdentidad) async {
@@ -1286,9 +1305,11 @@ class _HomeState extends State<Home> {
             });
       case 10:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: braDuelos,
             title: Text(
-              braDuelos ? "Leido" : "Aun no Leido",
+              braDuelos ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (braDuelos) async {
@@ -1302,9 +1323,11 @@ class _HomeState extends State<Home> {
             });
       case 11:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: heroeEras,
             title: Text(
-              heroeEras ? "Leido" : "Aun no Leido",
+              heroeEras ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (heroeEras) async {
@@ -1318,9 +1341,11 @@ class _HomeState extends State<Home> {
             });
       case 12:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: historiaSecreta,
             title: Text(
-              historiaSecreta ? "Leido" : "Aun no Leido",
+              historiaSecreta ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (historiaSecreta) async {
@@ -1333,9 +1358,11 @@ class _HomeState extends State<Home> {
             });
       case 13:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: alientoDioses,
             title: Text(
-              alientoDioses ? "Leido" : "Aun no Leido",
+              alientoDioses ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (alientoDioses) async {
@@ -1348,9 +1375,11 @@ class _HomeState extends State<Home> {
             });
       case 14:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: caminoReyes,
             title: Text(
-              caminoReyes ? "Leido" : "Aun no Leido",
+              caminoReyes ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (caminoReyes) async {
@@ -1363,9 +1392,11 @@ class _HomeState extends State<Home> {
             });
       case 15:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: palabrasRadiantes,
             title: Text(
-              palabrasRadiantes ? "Leido" : "Aun no Leido",
+              palabrasRadiantes ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (palabrasRadiantes) async {
@@ -1378,9 +1409,11 @@ class _HomeState extends State<Home> {
             });
       case 16:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: danzante,
             title: Text(
-              danzante ? "Leido" : "Aun no Leido",
+              danzante ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (danzante) async {
@@ -1393,9 +1426,11 @@ class _HomeState extends State<Home> {
             });
       case 17:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: juramentada,
             title: Text(
-              juramentada ? "Leido" : "Aun no Leido",
+              juramentada ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (juramentada) async {
@@ -1408,9 +1443,11 @@ class _HomeState extends State<Home> {
             });
       case 18:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: esquirlas,
             title: Text(
-              esquirlas ? "Leido" : "Aun no Leido",
+              esquirlas ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (esquirlas) async {
@@ -1423,9 +1460,11 @@ class _HomeState extends State<Home> {
             });
       case 19:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: ritmoGuerra,
             title: Text(
-              ritmoGuerra ? "Leido" : "Aun no Leido",
+              ritmoGuerra ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (ritmoGuerra) async {
@@ -1438,9 +1477,11 @@ class _HomeState extends State<Home> {
             });
       case 20:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: ocaso,
             title: Text(
-              ocaso ? "Leido" : "Aun no Leido",
+              ocaso ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (ocaso) async {
@@ -1453,9 +1494,11 @@ class _HomeState extends State<Home> {
             });
       case 21:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: arena,
             title: Text(
-              arena ? "Leido" : "Aun no Leido",
+              arena ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (arena) async {
@@ -1468,9 +1511,11 @@ class _HomeState extends State<Home> {
             });
       case 22:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: silencio,
             title: Text(
-              silencio ? "Leido" : "Aun no Leido",
+              silencio ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (silencio) async {
@@ -1484,9 +1529,11 @@ class _HomeState extends State<Home> {
 
       default:
         return CheckboxListTile(
+            checkColor: Colors.black,
+            activeColor: Colors.white,
             value: elantris,
             title: Text(
-              elantris ? "Leido" : "Aun no Leido",
+              elantris ? "Completado" : "En lectura",
               style: const TextStyle(fontSize: 24, color: Colors.white),
             ),
             onChanged: (elantris) {
