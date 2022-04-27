@@ -428,7 +428,10 @@ class _HomeState extends State<Home> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            Image(image: AssetImage('assets/images/drawer.png')),
+            Padding(
+              padding: const EdgeInsets.only(top: 50),
+              child: Image(image: AssetImage('assets/images/drawer.png')),
+            ),
             !idioma
                 ? Image(image: AssetImage('assets/images/info_esp.png'))
                 : Image(image: AssetImage('assets/images/info_ing.png')),
@@ -447,7 +450,7 @@ class _HomeState extends State<Home> {
                     });
                   },
                   child: idioma
-                      ? Image(image: AssetImage('assets/images/espana.png'))
+                      ? Image(image: AssetImage('assets/images/argentina.png'))
                       : Image(image: AssetImage('assets/images/eeuu.png')),
                 ),
               ),
