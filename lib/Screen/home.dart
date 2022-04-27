@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   bool _showBackToTopButton = false;
   // scroll controller
   late ScrollController _scrollController;
-
+  bool idioma = false;
   bool elantris = false,
       almaEmperador = false,
       esperanzaElantris = false,
@@ -214,6 +214,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     obtenerLibros();
+    initIdioma();
     _scrollController = ScrollController()
       ..addListener(() {
         setState(() {
@@ -227,6 +228,17 @@ class _HomeState extends State<Home> {
     initTargets();
     tutorial();
     super.initState();
+  }
+
+  void initIdioma() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('idioma') == null) {
+      idioma = false;
+    } else {
+      setState(() {
+        idioma = prefs.getBool('idioma')!;
+      });
+    }
   }
 
   void tutorial() async {
@@ -405,6 +417,44 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      drawer: Drawer(
+        backgroundColor: Color.fromARGB(255, 0, 18, 36),
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            Image(image: AssetImage('assets/images/drawer.png')),
+            !idioma
+                ? Image(image: AssetImage('assets/images/info_esp.png'))
+                : Image(image: AssetImage('assets/images/info_ing.png')),
+            Padding(
+              padding: const EdgeInsets.all(100),
+              child: SizedBox(
+                height: 60,
+                width: 60,
+                child: GestureDetector(
+                  onTap: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    setState(() {
+                      idioma = !idioma;
+                      prefs.setBool('idioma', idioma);
+                    });
+                  },
+                  child: idioma
+                      ? Image(image: AssetImage('assets/images/espana.png'))
+                      : Image(image: AssetImage('assets/images/eeuu.png')),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
           controller: _scrollController,
@@ -454,13 +504,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Elantris",
-                                  "Elantris es, junto a El Aliento de los Dioses y El Imperio Final, uno de los tres libros recomendados para iniciarse en el Cosmere.",
-                                  "elantris.png",
-                                  "linkEbay",
-                                  1);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Elantris",
+                                    "Elantris is, along with Warbreaker and The Final Empire, one of the three recommended books for getting started in the Cosmere.",
+                                    "elantris.png",
+                                    1);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Elantris",
+                                    "Elantris es, junto a El Aliento de los Dioses y El Imperio Final, uno de los tres libros recomendados para iniciarse en el Cosmere.",
+                                    "elantris.png",
+                                    1);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -490,13 +548,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "El Alma del Emperador",
-                                  "El Alma del Emperador es un relato ambientado en el planeta donde sucede Elantris, pero en otro continente y se puede leer por separado. Se encuentra recogido en Arcanum Ilimitado.",
-                                  "Arcanum.png",
-                                  "linkEbay",
-                                  2);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The Emperor's Soul",
+                                    "The Emperor's Soul is a story set on the planet where Elantris takes place, but on another continent and can be read separately. It is collected in Arcanum Unbounded.",
+                                    "Arcanum.png",
+                                    2);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "El Alma del Emperador",
+                                    "El Alma del Emperador es un relato ambientado en el planeta donde sucede Elantris, pero en otro continente y se puede leer por separado. Se encuentra recogido en Arcanum Ilimitado.",
+                                    "Arcanum.png",
+                                    2);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -527,13 +593,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "La Esperanza de Elantris ",
-                                  "La Esperanza de Elantris es un relato que narra un punto de vista alternativo de un suceso de la novela original. Se encuentra recogido en Arcanum Ilimitado.",
-                                  "Arcanum.png",
-                                  "linkEbay",
-                                  3);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The Hope of Elantris",
+                                    "The Hope of Elantris is a story that narrates an alternate viewpoint of an event from the original novel. It is collected in  Arcanum Unbounded.",
+                                    "Arcanum.png",
+                                    3);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "La Esperanza de Elantris ",
+                                    "La Esperanza de Elantris es un relato que narra un punto de vista alternativo de un suceso de la novela original. Se encuentra recogido en Arcanum Ilimitado.",
+                                    "Arcanum.png",
+                                    3);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -564,13 +638,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "El Undécimo metal ",
-                                  "El Undécimo Metal es un relato corto que viene a ser una precuela de los acontecimientos que se explican en El Imperio Final, y vale la pena leerlo al acabar dicha novela. Se encuentra recogido en Arcanum Ilimitado.",
-                                  "Arcanum.png",
-                                  "linkEbay",
-                                  4);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The Eleventh Metal",
+                                    "The Eleventh Metal is a short story that comes as a prequel to the events explained in The Final Empire, and is worth reading after finishing that novel. It is collected in Arcanum Unbounded.",
+                                    "Arcanum.png",
+                                    4);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "El Undécimo metal",
+                                    "El Undécimo Metal es un relato corto que viene a ser una precuela de los acontecimientos que se explican en El Imperio Final, y vale la pena leerlo al acabar dicha novela. Se encuentra recogido en Arcanum Ilimitado.",
+                                    "Arcanum.png",
+                                    4);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -602,13 +684,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "El Imperio Final",
-                                  "Si te gustan las sagas, El Imperio Final, novela con la que se inicia Nacidos de la Bruma, es otro de los puntos recomendados de entrada al Cosmere junto a Elantris y El Aliento de los Dioses.",
-                                  "imperio_final.png",
-                                  "linkEbay",
-                                  5);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The Final Empire",
+                                    "If you like sagas, The Final Empire, the novel with which Mistborn begins, is another recommended entry point to the Cosmere along with Elantris and Warbreaker.",
+                                    "imperio_final.png",
+                                    5);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "El Imperio Final",
+                                    "Si te gustan las sagas, El Imperio Final, novela con la que se inicia Nacidos de la Bruma, es otro de los puntos recomendados de entrada al Cosmere junto a Elantris y El Aliento de los Dioses.",
+                                    "imperio_final.png",
+                                    5);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -639,13 +729,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "El Pozo de la Asencion",
-                                  "El Pozo de la Ascensión es la segunda entrega de Nacidos de la Bruma Era 1",
-                                  "pozo_asencion.png",
-                                  "linkEbay",
-                                  6);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The well of Ascension",
+                                    "The Well of Ascension is the second installment of Mistborn Age 1.",
+                                    "pozo_asencion.png",
+                                    6);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "El Pozo de la Asencion",
+                                    "El Pozo de la Ascensión es la segunda entrega de Nacidos de la Bruma Era 1",
+                                    "pozo_asencion.png",
+                                    6);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -675,13 +773,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Alomante Jak",
-                                  "Alomante Jak es un relato corto sobre un personaje ficticio cuyas aventuras se publican en el Diario de Elendel, y que aparece por primera vez en Aleación de Ley. Se encuentra recogido en Arcanum Ilimitado.",
-                                  "Arcanum.png",
-                                  "linkEbay",
-                                  7);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Allomancer Jak",
+                                    "Alomante Jak is a short story about a fictional character whose adventures are published in Elden's Diary, first appearing in Alloy of Law. It is collected in Arcanum Unbounded.",
+                                    "Arcanum.png",
+                                    7);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Alomante Jak",
+                                    "Alomante Jak es un relato corto sobre un personaje ficticio cuyas aventuras se publican en el Diario de Elendel, y que aparece por primera vez en Aleación de Ley. Se encuentra recogido en Arcanum Ilimitado.",
+                                    "Arcanum.png",
+                                    7);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -712,13 +818,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Aleación de Ley",
-                                  "Aleación de Ley es la primera entrega de la segunda Era de Nacidos de la Bruma, y tiene lugar trescientos años después del Héroe de las Eras.",
-                                  "aleacion_ley.jpg",
-                                  "linkEbay",
-                                  8);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The alloy of Law",
+                                    "Alloy of Law is the first installment of the second Age of Mistborn, and takes place three hundred years after Hero of Ages.",
+                                    "aleacion_ley.jpg",
+                                    8);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Aleación de Ley",
+                                    "Aleación de Ley es la primera entrega de la segunda Era de Nacidos de la Bruma, y tiene lugar trescientos años después del Héroe de las Eras.",
+                                    "aleacion_ley.jpg",
+                                    8);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -749,13 +863,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Sombras de Identidad",
-                                  "Sombras de Identidad es la segunda entrega de Nacidos de la Bruma Era 2",
-                                  "sombras_identidad.jpg",
-                                  "linkEbay",
-                                  9);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Shadows of Self",
+                                    "Shadows of Identity is the second installment of Mistborn Age 2.",
+                                    "sombras_identidad.jpg",
+                                    9);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Sombras de Identidad",
+                                    "Sombras de Identidad es la segunda entrega de Nacidos de la Bruma Era 2",
+                                    "sombras_identidad.jpg",
+                                    9);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -787,13 +909,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Brazales de Duelo ",
-                                  "Brazales de Duelo es la tercera entrega de Nacidos de la Bruma Era 2. El libro que cierra la saga, El Metal Perdido, se publicará en inglés en navidades de 2022.",
-                                  "brazaletes_duelo.png",
-                                  "linkEbay",
-                                  10);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The bands of Mourning",
+                                    "Dueling Arms is the third installment of Mistborn Age 2. The book that closes the saga, The Lost Metal, will be published in English in Christmas 2022.",
+                                    "brazaletes_duelo.png",
+                                    10);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Brazales de Duelo",
+                                    "Brazales de Duelo es la tercera entrega de Nacidos de la Bruma Era 2. El libro que cierra la saga, El Metal Perdido, se publicará en inglés en navidades de 2022.",
+                                    "brazaletes_duelo.png",
+                                    10);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -824,13 +954,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "El Heroe de las Eras",
-                                  "El Héroe de las Eras cierra la primera trilogía de Nacidos de la Bruma Era 1",
-                                  "heroe_de_eras.jpg",
-                                  "linkEbay",
-                                  11);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The Hero of ages",
+                                    "The Hero of the Ages closes the first trilogy of Mistborn Age 1.",
+                                    "heroe_de_eras.jpg",
+                                    11);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "El Heroe de las Eras",
+                                    "El Héroe de las Eras cierra la primera trilogía de Nacidos de la Bruma Era 1.",
+                                    "heroe_de_eras.jpg",
+                                    11);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -860,13 +998,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Historia secreta",
-                                  "Historia Secreta es un relato corto que temporalmente ocurre tras El Héroe de las Eras, pero cuya lectura es más impactante tras Brazales de Duelo. Se encuentra recogido en Arcanum Ilimitado. ",
-                                  "Arcanum.png",
-                                  "linkEbay",
-                                  12);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Secret history",
+                                    "Secret History is a short story that temporally takes place after The Hero of the Ages, but whose reading is more impactful after The Bands of Mourning. It is collected in Arcanum Unbounded.",
+                                    "Arcanum.png",
+                                    12);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Historia secreta",
+                                    "Historia Secreta es un relato corto que temporalmente ocurre tras El Héroe de las Eras, pero cuya lectura es más impactante tras Brazales de Duelo. Se encuentra recogido en Arcanum Ilimitado. ",
+                                    "Arcanum.png",
+                                    12);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -899,13 +1045,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "El Aliento de los Dioses",
-                                  "El Aliento de los Dioses es uno de los tres puntos de entrada recomendados al Cosmere. Se trata de una novela autoconclusiva, cuya lectura es muy recomendable antes de adentrarse en El Archivo de las Tormentas.",
-                                  "warbreaker.jpg",
-                                  "linkEbay",
-                                  13);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Warbreaker",
+                                    "It is one of the three recommended entry points to Cosmere. It is a self-conclusive novel, whose reading is highly recommended before delving into Stormlight Archive.",
+                                    "warbreaker.jpg",
+                                    13);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "El Aliento de los Dioses",
+                                    "El Aliento de los Dioses es uno de los tres puntos de entrada recomendados al Cosmere. Se trata de una novela autoconclusiva, cuya lectura es muy recomendable antes de adentrarse en El Archivo de las Tormentas.",
+                                    "warbreaker.jpg",
+                                    13);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -937,13 +1091,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "El Camino de los Reyes",
-                                  "El Camino de los Reyes es la novela que inicia El Archivo de las Tormentas, la obra magna de Brandon Sanderson y el punto donde a día de hoy converge todo el Cosmere, por lo que no es una buena obra para adentrarse en este universo. Para ello recomendamos: Elantris, El Aliento de los Dioses o El Imperio Final.",
-                                  "camino_reyes.jpg",
-                                  "linkEbay",
-                                  14);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The way of kings",
+                                    "The Way of Kings is the novel that begins Stormlight archive, the magnum opus of Brandon Sanderson and the point where to this day converges all the Cosmere, so it is not a good work to get into this universe. For this we recommend: Elantris, Warbreaker or The Final Empire.",
+                                    "camino_reyes.jpg",
+                                    14);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "El Camino de los Reyes",
+                                    "El Camino de los Reyes es la novela que inicia El Archivo de las Tormentas, la obra magna de Brandon Sanderson y el punto donde a día de hoy converge todo el Cosmere, por lo que no es una buena obra para adentrarse en este universo. Para ello recomendamos: Elantris, El Aliento de los Dioses o El Imperio Final.",
+                                    "camino_reyes.jpg",
+                                    14);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -974,13 +1136,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Palabras Radiantes",
-                                  "Palabras Radiantes es la segunda entrega del Archivo de las Tormentas.",
-                                  "palabras_radiantes.jpg",
-                                  "linkEbay",
-                                  15);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Words of radiance",
+                                    "Is the second installment of the stormlight archive.",
+                                    "palabras_radiantes.jpg",
+                                    15);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Palabras Radiantes",
+                                    "Palabras Radiantes es la segunda entrega del Archivo de las Tormentas.",
+                                    "palabras_radiantes.jpg",
+                                    15);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -1011,13 +1181,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Danzante del Filo",
-                                  "Danzante del Filo es un relato corto que sucede entre Palabras Radiantes y Juramentada, que vale la pena leer entre ambas novelas. Se encuentra recogido en Arcanum Ilimitado. ",
-                                  "Arcanum.png",
-                                  "linkEbay",
-                                  16);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Edgedancer",
+                                    "Edgedancer is a short story that happens between Words of radiance and Oathbringer, which is worth reading between both novels. It is collected in Arcanum Unbounded.",
+                                    "Arcanum.png",
+                                    16);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Danzante del Filo",
+                                    "Danzante del Filo es un relato corto que sucede entre Palabras Radiantes y Juramentada, que vale la pena leer entre ambas novelas. Se encuentra recogido en Arcanum Ilimitado. ",
+                                    "Arcanum.png",
+                                    16);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -1048,13 +1226,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Juramentada ",
-                                  "Juramentada es la tercera entrega del Archivo de las Tormentas.",
-                                  "juramentada.jpg",
-                                  "linkEbay",
-                                  17);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Oathbringer",
+                                    "Oathbringer is the third installment of the stormlight archive.",
+                                    "juramentada.jpg",
+                                    17);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Juramentada",
+                                    "Juramentada es la tercera entrega del Archivo de las Tormentas.",
+                                    "juramentada.jpg",
+                                    17);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -1085,13 +1271,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Esquirla del Amanecer ",
-                                  "Esquirla del Amanecer es un relato corto que tiene lugar entre Juramentada y El Ritmo de la Guerra y que resulta esclarecedor desde un punto de vista cosmeriano.",
-                                  "esquirlas_amanecer.jpg",
-                                  "linkEbay",
-                                  18);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Dawnshard",
+                                    "Is a short story that takes place between Oathbringer and The Rhythm of War and is enlightening from a Cosmerian point of view.",
+                                    "esquirlas_amanecer.jpg",
+                                    18);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Esquirla del Amanecer",
+                                    "Esquirla del Amanecer es un relato corto que tiene lugar entre Juramentada y El Ritmo de la Guerra y que resulta esclarecedor desde un punto de vista cosmeriano.",
+                                    "esquirlas_amanecer.jpg",
+                                    18);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -1122,13 +1316,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "El Ritmo de la Guerra",
-                                  "El Ritmo de la Guerra es la cuarta entrega del Archivo de las Tormentas. Recomendamos haber leído todo lo que aparece en el camino desde Elantris hasta aquí antes de leer este libro.",
-                                  "ritmo_de_guerra.jpg",
-                                  "linkEbay",
-                                  19);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "The rhythm of war",
+                                    "The Rhythm of War is the fourth installment of the Storm Archive. We recommend having read everything along the way from Elantris to here before reading this book.",
+                                    "ritmo_de_guerra.jpg",
+                                    19);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "El Ritmo de la Guerra",
+                                    "El Ritmo de la Guerra es la cuarta entrega del Archivo de las Tormentas. Recomendamos haber leído todo lo que aparece en el camino desde Elantris hasta aquí antes de leer este libro.",
+                                    "ritmo_de_guerra.jpg",
+                                    19);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -1158,13 +1360,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Sexto del Ocaso",
-                                  "Sexto del Ocaso es un relato corto que puede leerse de forma independiente a cualquier novela del Cosmere. Brandon está escribiendo una continuación muy, pero que muy prometedora aunque aún faltan años para su publicación. Se encuentra recogido en Arcanum Ilimitado.",
-                                  "Arcanum.png",
-                                  "linkEbay",
-                                  20);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Sixth of the dusk",
+                                    "Sixth of Dusk is a short story that can be read as a stand-alone to any Cosmere novel. Brandon is writing a very, very promising sequel although publication is still years away. It is collected in Arcanum Unbounded.",
+                                    "Arcanum.png",
+                                    20);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Sexto del Ocaso",
+                                    "Sexto del Ocaso es un relato corto que puede leerse de forma independiente a cualquier novela del Cosmere. Brandon está escribiendo una continuación muy, pero que muy prometedora aunque aún faltan años para su publicación. Se encuentra recogido en Arcanum Ilimitado.",
+                                    "Arcanum.png",
+                                    20);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -1194,13 +1404,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Arena Blanca",
-                                  "Arena Blanca es una saga de tres novelas gráficas que está a la espera de ser reeditada con material adicional en inglés (y traducido al castellano) entre 2022 y 2023. Se puede leer de forma individual. Arcanum Ilimitado contiene unas páginas de muestra.",
-                                  "arena_blanca.jpg",
-                                  "linkEbay",
-                                  21);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "White sand",
+                                    "White sand is a saga of three graphic novels that is awaiting re-release with additional material in English (and translated into Spanish) between 2022 and 2023. It can be read individually. Arcanum Unbounded contains a few sample pages.",
+                                    "arena_blanca.jpg",
+                                    21);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Arena Blanca",
+                                    "Arena Blanca es una saga de tres novelas gráficas que está a la espera de ser reeditada con material adicional en inglés (y traducido al castellano) entre 2022 y 2023. Se puede leer de forma individual. Arcanum Ilimitado contiene unas páginas de muestra.",
+                                    "arena_blanca.jpg",
+                                    21);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -1230,13 +1448,21 @@ class _HomeState extends State<Home> {
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) {
-                              return metodo(
-                                  context,
-                                  "Sombras por Silencio en los bosques del infierno ",
-                                  "junto a Sexto del Ocaso, uno de los relatos cortos más originales e intrigantes que ha escrito Brandon en el Cosmere. Se encuentra recogido en Arcanum Ilimitado y se puede leer de forma independiente a cualquier novela de este universo literario.",
-                                  "Arcanum.png",
-                                  "linkEbay",
-                                  22);
+                              if (idioma) {
+                                return metodo(
+                                    context,
+                                    "Shadows for Silence in the Forests of Hell",
+                                    "Next to Sixth of Dusk, one of the most original and intriguing short stories Brandon has written in the Cosmere. It is collected in Arcanum Unbounded and can be read as a stand-alone to any novel in this literary universe.",
+                                    "Arcanum.png",
+                                    22);
+                              } else {
+                                return metodo(
+                                    context,
+                                    "Sombras por Silencio en los bosques del infierno",
+                                    "Junto a Sexto del Ocaso, uno de los relatos cortos más originales e intrigantes que ha escrito Brandon en el Cosmere. Se encuentra recogido en Arcanum Ilimitado y se puede leer de forma independiente a cualquier novela de este universo literario.",
+                                    "Arcanum.png",
+                                    22);
+                              }
                             });
                       },
                       child: CircleAvatar(
@@ -1262,10 +1488,15 @@ class _HomeState extends State<Home> {
                       color: Colors.white,
                       size: 25,
                     ),
-                    const Text(
-                      "Impulsado por: ",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
+                    idioma
+                        ? const Text(
+                            "Powered by: ",
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          )
+                        : const Text(
+                            "Impulsado por: ",
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ),
                     SizedBox(
                       width: 70,
                       height: 70,
@@ -1298,8 +1529,8 @@ class _HomeState extends State<Home> {
     );
   }
 
-  StatefulBuilder metodo(BuildContext context, String titulo, String des,
-      String img, String ebay, int b) {
+  StatefulBuilder metodo(
+      BuildContext context, String titulo, String des, String img, int b) {
     return StatefulBuilder(
       builder: (context, setState) => Dialog(
         shape: RoundedRectangleBorder(
@@ -1399,10 +1630,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: elantris,
-            title: Text(
-              elantris ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    elantris ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    elantris ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (elantris) async {
               setState(() {
                 this.elantris = elantris!;
@@ -1417,10 +1653,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: almaEmperador,
-            title: Text(
-              almaEmperador ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    almaEmperador ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    almaEmperador ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (almaEmperador) async {
               setState(() {
                 this.almaEmperador = almaEmperador!;
@@ -1435,10 +1676,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: esperanzaElantris,
-            title: Text(
-              esperanzaElantris ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    esperanzaElantris ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    esperanzaElantris ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (esperanzaElantris) async {
               setState(() {
                 this.esperanzaElantris = esperanzaElantris!;
@@ -1454,10 +1700,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: undecimoMetal,
-            title: Text(
-              undecimoMetal ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    undecimoMetal ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    undecimoMetal ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (undecimoMetal) async {
               setState(() {
                 this.undecimoMetal = undecimoMetal!;
@@ -1472,10 +1723,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: imperioFinal,
-            title: Text(
-              imperioFinal ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    imperioFinal ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    imperioFinal ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (imperioFinal) async {
               setState(() {
                 this.imperioFinal = imperioFinal!;
@@ -1490,10 +1746,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: pozoAsencion,
-            title: Text(
-              pozoAsencion ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    pozoAsencion ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    pozoAsencion ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (pozoAsencion) async {
               setState(() {
                 this.pozoAsencion = pozoAsencion!;
@@ -1508,10 +1769,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: alomante,
-            title: Text(
-              alomante ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    alomante ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    alomante ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (alomante) async {
               setState(() {
                 this.alomante = alomante!;
@@ -1526,10 +1792,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: aley,
-            title: Text(
-              aley ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    aley ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    aley ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (aley) async {
               setState(() {
                 this.aley = aley!;
@@ -1544,10 +1815,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: sombrasIdentidad,
-            title: Text(
-              sombrasIdentidad ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    sombrasIdentidad ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    sombrasIdentidad ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (sombrasIdentidad) async {
               setState(() {
                 this.sombrasIdentidad = sombrasIdentidad!;
@@ -1562,10 +1838,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: braDuelos,
-            title: Text(
-              braDuelos ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    braDuelos ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    braDuelos ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (braDuelos) async {
               setState(() {
                 this.braDuelos = braDuelos!;
@@ -1580,10 +1861,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: heroeEras,
-            title: Text(
-              heroeEras ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    heroeEras ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    heroeEras ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (heroeEras) async {
               setState(() {
                 this.heroeEras = heroeEras!;
@@ -1598,10 +1884,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: historiaSecreta,
-            title: Text(
-              historiaSecreta ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    historiaSecreta ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    historiaSecreta ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (historiaSecreta) async {
               setState(() {
                 this.historiaSecreta = historiaSecreta!;
@@ -1615,10 +1906,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: alientoDioses,
-            title: Text(
-              alientoDioses ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    alientoDioses ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    alientoDioses ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (alientoDioses) async {
               setState(() {
                 this.alientoDioses = alientoDioses!;
@@ -1632,10 +1928,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: caminoReyes,
-            title: Text(
-              caminoReyes ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    caminoReyes ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    caminoReyes ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (caminoReyes) async {
               setState(() {
                 this.caminoReyes = caminoReyes!;
@@ -1649,10 +1950,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: palabrasRadiantes,
-            title: Text(
-              palabrasRadiantes ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    palabrasRadiantes ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    palabrasRadiantes ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (palabrasRadiantes) async {
               setState(() {
                 this.palabrasRadiantes = palabrasRadiantes!;
@@ -1666,10 +1972,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: danzante,
-            title: Text(
-              danzante ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    danzante ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    danzante ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (danzante) async {
               setState(() {
                 this.danzante = danzante!;
@@ -1683,10 +1994,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: juramentada,
-            title: Text(
-              juramentada ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    juramentada ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    juramentada ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (juramentada) async {
               setState(() {
                 this.juramentada = juramentada!;
@@ -1700,10 +2016,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: esquirlas,
-            title: Text(
-              esquirlas ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    esquirlas ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    esquirlas ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (esquirlas) async {
               setState(() {
                 this.esquirlas = esquirlas!;
@@ -1717,10 +2038,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: ritmoGuerra,
-            title: Text(
-              ritmoGuerra ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    ritmoGuerra ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    ritmoGuerra ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (ritmoGuerra) async {
               setState(() {
                 this.ritmoGuerra = ritmoGuerra!;
@@ -1734,10 +2060,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: ocaso,
-            title: Text(
-              ocaso ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    ocaso ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    ocaso ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (ocaso) async {
               setState(() {
                 this.ocaso = ocaso!;
@@ -1751,10 +2082,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: arena,
-            title: Text(
-              arena ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    arena ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    arena ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (arena) async {
               setState(() {
                 this.arena = arena!;
@@ -1768,10 +2104,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: silencio,
-            title: Text(
-              silencio ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    silencio ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    silencio ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (silencio) async {
               setState(() {
                 this.silencio = silencio!;
@@ -1786,10 +2127,15 @@ class _HomeState extends State<Home> {
             checkColor: Colors.black,
             activeColor: Colors.white,
             value: elantris,
-            title: Text(
-              elantris ? "Completado" : "En lectura",
-              style: const TextStyle(fontSize: 24, color: Colors.white),
-            ),
+            title: idioma
+                ? Text(
+                    elantris ? "Completed" : "Pending",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  )
+                : Text(
+                    elantris ? "Completado" : "Pendiente",
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
+                  ),
             onChanged: (elantris) {
               setState(() {
                 this.elantris = elantris!;
