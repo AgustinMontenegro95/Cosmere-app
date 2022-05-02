@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   bool _showBackToTopButton = false;
   // scroll controller
   late ScrollController _scrollController;
-  bool idioma = false;
+  bool idioma = true;
   bool elantris = false,
       almaEmperador = false,
       esperanzaElantris = false,
@@ -233,7 +233,7 @@ class _HomeState extends State<Home> {
   void initIdioma() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getBool('idioma') == null) {
-      idioma = false;
+      idioma = true;
     } else {
       setState(() {
         idioma = prefs.getBool('idioma')!;
@@ -296,19 +296,31 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const <Widget>[
                     Text(
-                      "ALMACENA TU PROGRESO",
+                      "STORE YOUR PROGRESS",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
+                          fontSize: 30.0),
+                    ),
+                    Text(
+                      "ALMACENA TU PROGRESO",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
                           fontSize: 20.0),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 10.0),
+                      padding: EdgeInsets.only(top: 30.0),
                       child: Text(
-                        "Accede a la descripción de cada libro, marca los completados y guarda tu progreso.",
-                        style: TextStyle(color: Colors.white),
+                        "Access the description of each book, mark the completed ones and save your progress.",
+                        style: TextStyle(color: Colors.white, fontSize: 15.0),
                         textAlign: TextAlign.justify,
                       ),
+                    ),
+                    Text(
+                      "Accede a la descripción de cada libro, marca los completados y guarda tu progreso.",
+                      style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                      textAlign: TextAlign.justify,
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 20),
@@ -337,19 +349,31 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const <Widget>[
                   Text(
-                    "LÍNEA TEMPORAL DEL COSMERE",
+                    "COSMERE TIME LINE",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
+                        fontSize: 30.0),
+                  ),
+                  Text(
+                    "LÍNEA TEMPORAL DEL COSMERE",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
                         fontSize: 20.0),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 10.0),
+                    padding: EdgeInsets.only(top: 30.0),
                     child: Text(
-                      "Sigue las líneas para una lectura de acuerdo al orden recomendado. Sin embargo, se puede comenzar por 'El imperio final' o 'El aliento de los dioses'.",
-                      style: TextStyle(color: Colors.white),
+                      "Follow the lines for a reading according to the recommended order. However, you can start with 'The Final Empire' or 'Warbreaker'.",
+                      style: TextStyle(color: Colors.white, fontSize: 15.0),
                       textAlign: TextAlign.justify,
                     ),
+                  ),
+                  Text(
+                    "Sigue las líneas para una lectura de acuerdo al orden recomendado. Sin embargo, se puede comenzar por 'El imperio final' o 'El aliento de los dioses'.",
+                    style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                    textAlign: TextAlign.justify,
                   ),
                 ],
               ),
@@ -373,25 +397,49 @@ class _HomeState extends State<Home> {
                 mainAxisSize: MainAxisSize.min,
                 children: const <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 20),
+                    padding: EdgeInsets.only(top: 20, bottom: 40),
                     child: SizedBox(
                         width: 150,
                         child: Image(
                             image: AssetImage('assets/images/Arcanum.png'))),
+                  ),
+                  Text(
+                    "UNBOUNDED ARCANUM",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30.0),
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: 20.0),
                     child: Text(
                       "ARCANUM ILIMITADO",
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.grey,
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0),
                     ),
                   ),
+                ],
+              ),
+            )),
+        TargetContent(
+            align: ContentAlign.bottom,
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Text(
+                      "«Arcanum Unlimited» is a short story anthology that compiles the Cosmere-related stories that Brandon Sanderson has published over the years.\nAlthough some are stand-alone stories that can be enjoyed on their own, others require you to have previously read some of the Cosmere novels. Cosmere. Read them following the white lines.",
+                      style: TextStyle(color: Colors.white, fontSize: 15.0),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
                   Text(
                     "«Arcanum Ilimitado» es una antología de relatos que recopila las historias relacionadas con el Cosmere que Brandon Sanderson ha publicado a lo largo de los años.\nAunque algunos son relatos independientes que se pueden disfrutar por separado, otras requieren haber leído previamente algunas novelas del Cosmere. Leelos siguiendo las líneas blancas.",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.grey, fontSize: 12.0),
                     textAlign: TextAlign.justify,
                   ),
                 ],
