@@ -484,7 +484,8 @@ class _HomeState extends State<Home> {
                 ? Image(image: AssetImage('assets/images/info_esp.png'))
                 : Image(image: AssetImage('assets/images/info_ing.png')),
             Padding(
-              padding: const EdgeInsets.all(100),
+              padding: const EdgeInsets.only(
+                  top: 70, left: 100, right: 100, bottom: 50),
               child: SizedBox(
                 height: 60,
                 width: 60,
@@ -502,7 +503,21 @@ class _HomeState extends State<Home> {
                       : Image(image: AssetImage('assets/images/eeuu.png')),
                 ),
               ),
-            )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                    width: 85,
+                    child: Image(
+                        image:
+                            AssetImage('assets/images/soludev_logo_mono.png'))),
+                SizedBox(
+                    width: 100,
+                    child: Image(
+                        image: AssetImage('assets/images/cosmere-es.png'))),
+              ],
+            ),
           ],
         ),
       ),
@@ -1530,8 +1545,8 @@ class _HomeState extends State<Home> {
               ),
               //Soludev
               Positioned(
-                bottom: 5,
-                left: 140,
+                bottom: 35,
+                left: 145,
                 child: Row(
                   children: [
                     const Icon(
@@ -1564,10 +1579,20 @@ class _HomeState extends State<Home> {
                             image: AssetImage(
                                 'assets/images/soludev_logo_mono.png')),
                       ),
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
+              Positioned(
+                bottom: -10,
+                left: 195,
+                child: SizedBox(
+                  width: 70,
+                  height: 70,
+                  child:
+                      Image(image: AssetImage('assets/images/cosmere-es.png')),
+                ),
+              ),
             ],
           )),
       floatingActionButton: _showBackToTopButton == false
