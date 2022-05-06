@@ -22,6 +22,10 @@ dependencies:
   shared_preferences: ^2.0.13
   google_fonts: ^2.3.2
 
+  share_plus: ^4.0.4
+  gallery_saver: ^2.3.2
+  file_saver: ^0.1.0
+
   tutorial_coach_mark: ^1.2.2
 
   # change_app_package_name: ^1.0.0

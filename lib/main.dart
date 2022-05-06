@@ -36,12 +36,7 @@ class _MyAppState extends State<MyApp> {
           defaultScale: true,
           minWidth: 480,
           defaultName: MOBILE,
-          breakpoints: [
-            const ResponsiveBreakpoint.autoScale(480, name: MOBILE),
-            const ResponsiveBreakpoint.resize(600, name: MOBILE),
-            const ResponsiveBreakpoint.resize(850, name: TABLET),
-            const ResponsiveBreakpoint.resize(1080, name: DESKTOP),
-          ],
+          breakpoints: [],
           background: Container(color: Colors.black)),
       debugShowCheckedModeBanner: false,
       home: const Home(),

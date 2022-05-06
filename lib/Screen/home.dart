@@ -1,8 +1,15 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
@@ -45,6 +52,29 @@ class _HomeState extends State<Home> {
       silencio = false,
       arena = false;
 
+  String elantrisNota = "0",
+      almaEmperadorNota = "0",
+      esperanzaElantrisNota = "0",
+      imperioFinalNota = "0",
+      pozoAsencionNota = "0",
+      heroeErasNota = "0",
+      aleyNota = "0",
+      sombrasIdentidadNota = "0",
+      braDuelosNota = "0",
+      historiaSecretaNota = "0",
+      undecimoMetalNota = "0",
+      alomanteNota = "0",
+      alientoDiosesNota = "0",
+      caminoReyesNota = "0",
+      palabrasRadiantesNota = "0",
+      danzanteNota = "0",
+      juramentadaNota = "0",
+      esquirlasNota = "0",
+      ritmoGuerraNota = "0",
+      ocasoNota = "0",
+      silencioNota = "0",
+      arenaNota = "0";
+
   late TutorialCoachMark tutorialCoachMark;
   List<TargetFocus> targets = [];
 
@@ -52,6 +82,166 @@ class _HomeState extends State<Home> {
   final GlobalKey _key1 = GlobalKey();
   final GlobalKey _key2 = GlobalKey();
   final GlobalKey _key3 = GlobalKey();
+
+  String _dropdownValue = "0";
+
+  void obtenerNotas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('elantrisNota') == null) {
+      elantrisNota = "0";
+    } else {
+      setState(() {
+        elantrisNota = prefs.getString('elantrisNota')!;
+      });
+    }
+    if (prefs.getString('almaEmperadorNota') == null) {
+      almaEmperadorNota = "0";
+    } else {
+      setState(() {
+        almaEmperadorNota = prefs.getString('almaEmperadorNota')!;
+      });
+    }
+    if (prefs.getString('esperanzaElantrisNota') == null) {
+      esperanzaElantrisNota = "0";
+    } else {
+      setState(() {
+        esperanzaElantrisNota = prefs.getString('esperanzaElantrisNota')!;
+      });
+    }
+    if (prefs.getString('imperioFinalNota') == null) {
+      imperioFinalNota = "0";
+    } else {
+      setState(() {
+        imperioFinalNota = prefs.getString('imperioFinalNota')!;
+      });
+    }
+    if (prefs.getString('pozoAsencionNota') == null) {
+      pozoAsencionNota = "0";
+    } else {
+      setState(() {
+        pozoAsencionNota = prefs.getString('pozoAsencionNota')!;
+      });
+    }
+    if (prefs.getString('heroeErasNota') == null) {
+      heroeErasNota = "0";
+    } else {
+      setState(() {
+        heroeErasNota = prefs.getString('heroeErasNota')!;
+      });
+    }
+    if (prefs.getString('aleyNota') == null) {
+      aleyNota = "0";
+    } else {
+      setState(() {
+        aleyNota = prefs.getString('aleyNota')!;
+      });
+    }
+    if (prefs.getString('sombrasIdentidadNota') == null) {
+      sombrasIdentidadNota = "0";
+    } else {
+      setState(() {
+        sombrasIdentidadNota = prefs.getString('sombrasIdentidadNota')!;
+      });
+    }
+    if (prefs.getString('braDuelosNota') == null) {
+      braDuelosNota = "0";
+    } else {
+      setState(() {
+        braDuelosNota = prefs.getString('braDuelosNota')!;
+      });
+    }
+    if (prefs.getString('historiaSecretaNota') == null) {
+      historiaSecretaNota = "0";
+    } else {
+      setState(() {
+        historiaSecretaNota = prefs.getString('historiaSecretaNota')!;
+      });
+    }
+    if (prefs.getString('undecimoMetalNota') == null) {
+      undecimoMetalNota = "0";
+    } else {
+      setState(() {
+        undecimoMetalNota = prefs.getString('undecimoMetalNota')!;
+      });
+    }
+    if (prefs.getString('alomanteNota') == null) {
+      alomanteNota = "0";
+    } else {
+      setState(() {
+        alomanteNota = prefs.getString('alomanteNota')!;
+      });
+    }
+    if (prefs.getString('alientoDiosesNota') == null) {
+      alientoDiosesNota = "0";
+    } else {
+      setState(() {
+        alientoDiosesNota = prefs.getString('alientoDiosesNota')!;
+      });
+    }
+    if (prefs.getString('caminoReyesNota') == null) {
+      caminoReyesNota = "0";
+    } else {
+      setState(() {
+        caminoReyesNota = prefs.getString('caminoReyesNota')!;
+      });
+    }
+    if (prefs.getString('palabrasRadiantesNota') == null) {
+      palabrasRadiantesNota = "0";
+    } else {
+      setState(() {
+        palabrasRadiantesNota = prefs.getString('palabrasRadiantesNota')!;
+      });
+    }
+    if (prefs.getString('danzanteNota') == null) {
+      danzanteNota = "0";
+    } else {
+      setState(() {
+        danzanteNota = prefs.getString('danzanteNota')!;
+      });
+    }
+    if (prefs.getString('juramentadaNota') == null) {
+      juramentadaNota = "0";
+    } else {
+      setState(() {
+        juramentadaNota = prefs.getString('juramentadaNota')!;
+      });
+    }
+    if (prefs.getString('esquirlasNota') == null) {
+      esquirlasNota = "0";
+    } else {
+      setState(() {
+        esquirlasNota = prefs.getString('esquirlasNota')!;
+      });
+    }
+    if (prefs.getString('ritmoGuerraNota') == null) {
+      ritmoGuerraNota = "0";
+    } else {
+      setState(() {
+        ritmoGuerraNota = prefs.getString('ritmoGuerraNota')!;
+      });
+    }
+    if (prefs.getString('ocasoNota') == null) {
+      ocasoNota = "0";
+    } else {
+      setState(() {
+        ocasoNota = prefs.getString('ocasoNota')!;
+      });
+    }
+    if (prefs.getString('silencioNota') == null) {
+      silencioNota = "0";
+    } else {
+      setState(() {
+        silencioNota = prefs.getString('silencioNota')!;
+      });
+    }
+    if (prefs.getString('arenaNota') == null) {
+      arenaNota = "0";
+    } else {
+      setState(() {
+        arenaNota = prefs.getString('arenaNota')!;
+      });
+    }
+  }
 
   void obtenerLibros() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -213,6 +403,12 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+    rootBundle.load('assets/images/compartir.png').then((data) {
+      setState(() {
+        this.imageData = data;
+      });
+    });
+    obtenerNotas();
     obtenerLibros();
     initIdioma();
     _scrollController = ScrollController()
@@ -462,6 +658,8 @@ class _HomeState extends State<Home> {
         duration: const Duration(seconds: 1), curve: Curves.linear);
   }
 
+  late ByteData imageData;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -477,7 +675,7 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.zero,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.only(top: 20),
               child: Image(image: AssetImage('assets/images/drawer.png')),
             ),
             !idioma
@@ -504,20 +702,10 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                    width: 85,
-                    child: Image(
-                        image:
-                            AssetImage('assets/images/soludev_logo_mono.png'))),
-                SizedBox(
-                    width: 100,
-                    child: Image(
-                        image: AssetImage('assets/images/cosmere-es.png'))),
-              ],
-            ),
+            SizedBox(
+                height: 100,
+                child: Image(
+                    image: AssetImage('assets/images/soludev_logo_mono.png'))),
           ],
         ),
       ),
@@ -1545,7 +1733,7 @@ class _HomeState extends State<Home> {
               ),
               //Soludev
               Positioned(
-                bottom: 35,
+                bottom: 20,
                 left: 145,
                 child: Row(
                   children: [
@@ -1581,16 +1769,6 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ],
-                ),
-              ),
-              Positioned(
-                bottom: -10,
-                left: 195,
-                child: SizedBox(
-                  width: 70,
-                  height: 70,
-                  child:
-                      Image(image: AssetImage('assets/images/cosmere-es.png')),
                 ),
               ),
             ],
@@ -1666,7 +1844,7 @@ class _HomeState extends State<Home> {
                   ),
                   Theme(
                       data: ThemeData(unselectedWidgetColor: Colors.white),
-                      child: libro(setState, b)),
+                      child: libro(setState, b, titulo)),
                   Align(
                       alignment: Alignment.bottomRight,
                       child: IconButton(
@@ -1699,505 +1877,2733 @@ class _HomeState extends State<Home> {
     );
   }
 
-  CheckboxListTile libro(StateSetter setState, int b) {
+  Widget libro(StateSetter setState, int b, String name) {
     switch (b) {
       case 1:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: elantris,
-            title: idioma
-                ? Text(
-                    elantris ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: elantris,
+                title: idioma
+                    ? Text(
+                        elantris ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        elantris ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (elantris) async {
+                  setState(() {
+                    this.elantris = elantris!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('elantris', elantris!);
+                }),
+            elantris
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: elantrisNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                elantrisNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'elantrisNota', elantrisNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $elantrisNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $elantrisNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    elantris ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (elantris) async {
-              setState(() {
-                this.elantris = elantris!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('elantris', elantris!);
-            });
+                : Container(),
+          ],
+        );
       case 2:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: almaEmperador,
-            title: idioma
-                ? Text(
-                    almaEmperador ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: almaEmperador,
+                title: idioma
+                    ? Text(
+                        almaEmperador ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        almaEmperador ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (almaEmperador) async {
+                  setState(() {
+                    this.almaEmperador = almaEmperador!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('almaEmperador', almaEmperador!);
+                }),
+            almaEmperador
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: almaEmperadorNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                almaEmperadorNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'almaEmperadorNota', almaEmperadorNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $almaEmperadorNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $almaEmperadorNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    almaEmperador ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (almaEmperador) async {
-              setState(() {
-                this.almaEmperador = almaEmperador!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('almaEmperador', almaEmperador!);
-            });
+                : Container(),
+          ],
+        );
       case 3:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: esperanzaElantris,
-            title: idioma
-                ? Text(
-                    esperanzaElantris ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: esperanzaElantris,
+                title: idioma
+                    ? Text(
+                        esperanzaElantris ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        esperanzaElantris ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (esperanzaElantris) async {
+                  setState(() {
+                    this.esperanzaElantris = esperanzaElantris!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('esperanzaElantris', esperanzaElantris!);
+                }),
+            esperanzaElantris
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: esperanzaElantrisNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                esperanzaElantrisNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString('esperanzaElantrisNota',
+                                    esperanzaElantrisNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $esperanzaElantrisNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $esperanzaElantrisNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    esperanzaElantris ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (esperanzaElantris) async {
-              setState(() {
-                this.esperanzaElantris = esperanzaElantris!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('esperanzaElantris', esperanzaElantris!);
-            });
-
+                : Container(),
+          ],
+        );
       case 4:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: undecimoMetal,
-            title: idioma
-                ? Text(
-                    undecimoMetal ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: undecimoMetal,
+                title: idioma
+                    ? Text(
+                        undecimoMetal ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        undecimoMetal ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (undecimoMetal) async {
+                  setState(() {
+                    this.undecimoMetal = undecimoMetal!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('undecimoMetal', undecimoMetal!);
+                }),
+            undecimoMetal
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: undecimoMetalNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                undecimoMetalNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'undecimoMetalNota', undecimoMetalNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $undecimoMetalNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $undecimoMetalNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    undecimoMetal ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (undecimoMetal) async {
-              setState(() {
-                this.undecimoMetal = undecimoMetal!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('undecimoMetal', undecimoMetal!);
-            });
+                : Container(),
+          ],
+        );
       case 5:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: imperioFinal,
-            title: idioma
-                ? Text(
-                    imperioFinal ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: imperioFinal,
+                title: idioma
+                    ? Text(
+                        imperioFinal ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        imperioFinal ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (imperioFinal) async {
+                  setState(() {
+                    this.imperioFinal = imperioFinal!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('imperioFinal', imperioFinal!);
+                }),
+            imperioFinal
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: imperioFinalNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                imperioFinalNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'imperioFinalNota', imperioFinalNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $imperioFinalNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $imperioFinalNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    imperioFinal ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (imperioFinal) async {
-              setState(() {
-                this.imperioFinal = imperioFinal!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('imperioFinal', imperioFinal!);
-            });
+                : Container(),
+          ],
+        );
       case 6:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: pozoAsencion,
-            title: idioma
-                ? Text(
-                    pozoAsencion ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: pozoAsencion,
+                title: idioma
+                    ? Text(
+                        pozoAsencion ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        pozoAsencion ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (pozoAsencion) async {
+                  setState(() {
+                    this.pozoAsencion = pozoAsencion!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('pozoAsencion', pozoAsencion!);
+                }),
+            pozoAsencion
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: pozoAsencionNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                pozoAsencionNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'pozoAsencionNota', pozoAsencionNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $pozoAsencionNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $pozoAsencionNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    pozoAsencion ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (pozoAsencion) async {
-              setState(() {
-                this.pozoAsencion = pozoAsencion!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('pozoAsencion', pozoAsencion!);
-            });
+                : Container(),
+          ],
+        );
       case 7:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: alomante,
-            title: idioma
-                ? Text(
-                    alomante ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: alomante,
+                title: idioma
+                    ? Text(
+                        alomante ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        alomante ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (alomante) async {
+                  setState(() {
+                    this.alomante = alomante!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('alomante', alomante!);
+                }),
+            alomante
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: alomanteNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                alomanteNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'alomanteNota', alomanteNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $alomanteNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $alomanteNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    alomante ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (alomante) async {
-              setState(() {
-                this.alomante = alomante!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('alomante', alomante!);
-            });
+                : Container(),
+          ],
+        );
       case 8:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: aley,
-            title: idioma
-                ? Text(
-                    aley ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: aley,
+                title: idioma
+                    ? Text(
+                        aley ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        aley ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (aley) async {
+                  setState(() {
+                    this.aley = aley!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('aley', aley!);
+                }),
+            aley
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: aleyNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                aleyNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString('aleyNotaNota', aleyNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $aleyNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $aleyNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    aley ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (aley) async {
-              setState(() {
-                this.aley = aley!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('aley', aley!);
-            });
+                : Container(),
+          ],
+        );
       case 9:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: sombrasIdentidad,
-            title: idioma
-                ? Text(
-                    sombrasIdentidad ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: sombrasIdentidad,
+                title: idioma
+                    ? Text(
+                        sombrasIdentidad ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        sombrasIdentidad ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (sombrasIdentidad) async {
+                  setState(() {
+                    this.sombrasIdentidad = sombrasIdentidad!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('sombrasIdentidad', sombrasIdentidad!);
+                }),
+            sombrasIdentidad
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: sombrasIdentidadNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                sombrasIdentidadNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString('sombrasIdentidadNota',
+                                    sombrasIdentidadNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $sombrasIdentidadNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $sombrasIdentidadNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    sombrasIdentidad ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (sombrasIdentidad) async {
-              setState(() {
-                this.sombrasIdentidad = sombrasIdentidad!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('sombrasIdentidad', sombrasIdentidad!);
-            });
+                : Container(),
+          ],
+        );
       case 10:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: braDuelos,
-            title: idioma
-                ? Text(
-                    braDuelos ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: braDuelos,
+                title: idioma
+                    ? Text(
+                        braDuelos ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        braDuelos ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (braDuelos) async {
+                  setState(() {
+                    this.braDuelos = braDuelos!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('braDuelos', braDuelos!);
+                }),
+            braDuelos
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: braDuelosNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                braDuelosNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'braDuelosNota', braDuelosNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $braDuelosNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $braDuelosNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    braDuelos ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (braDuelos) async {
-              setState(() {
-                this.braDuelos = braDuelos!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('braDuelos', braDuelos!);
-            });
+                : Container(),
+          ],
+        );
       case 11:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: heroeEras,
-            title: idioma
-                ? Text(
-                    heroeEras ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: heroeEras,
+                title: idioma
+                    ? Text(
+                        heroeEras ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        heroeEras ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (heroeEras) async {
+                  setState(() {
+                    this.heroeEras = heroeEras!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('heroeEras', heroeEras!);
+                }),
+            heroeEras
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: heroeErasNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                heroeErasNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'heroeErasNota', heroeErasNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $heroeErasNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $heroeErasNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    heroeEras ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (heroeEras) async {
-              setState(() {
-                this.heroeEras = heroeEras!;
-              });
-              this.setState(() {});
-              // Obtain shared preferences.
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('heroeEras', heroeEras!);
-            });
+                : Container(),
+          ],
+        );
       case 12:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: historiaSecreta,
-            title: idioma
-                ? Text(
-                    historiaSecreta ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: historiaSecreta,
+                title: idioma
+                    ? Text(
+                        historiaSecreta ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        historiaSecreta ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (historiaSecreta) async {
+                  setState(() {
+                    this.historiaSecreta = historiaSecreta!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('historiaSecreta', historiaSecreta!);
+                }),
+            historiaSecreta
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: historiaSecretaNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                historiaSecretaNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'historiaSecretaNota', historiaSecretaNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $historiaSecretaNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $historiaSecretaNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    historiaSecreta ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (historiaSecreta) async {
-              setState(() {
-                this.historiaSecreta = historiaSecreta!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('historiaSecreta', historiaSecreta!);
-            });
+                : Container(),
+          ],
+        );
       case 13:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: alientoDioses,
-            title: idioma
-                ? Text(
-                    alientoDioses ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: alientoDioses,
+                title: idioma
+                    ? Text(
+                        alientoDioses ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        alientoDioses ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (alientoDioses) async {
+                  setState(() {
+                    this.alientoDioses = alientoDioses!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('alientoDioses', alientoDioses!);
+                }),
+            alientoDioses
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: alientoDiosesNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                alientoDiosesNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'alientoDiosesNota', alientoDiosesNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $alientoDiosesNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $alientoDiosesNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    alientoDioses ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (alientoDioses) async {
-              setState(() {
-                this.alientoDioses = alientoDioses!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('alientoDioses', alientoDioses!);
-            });
+                : Container(),
+          ],
+        );
       case 14:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: caminoReyes,
-            title: idioma
-                ? Text(
-                    caminoReyes ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: caminoReyes,
+                title: idioma
+                    ? Text(
+                        caminoReyes ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        caminoReyes ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (caminoReyes) async {
+                  setState(() {
+                    this.caminoReyes = caminoReyes!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('caminoReyes', caminoReyes!);
+                }),
+            caminoReyes
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: caminoReyesNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                caminoReyesNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'caminoReyesNota', caminoReyesNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $caminoReyesNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $caminoReyesNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    caminoReyes ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (caminoReyes) async {
-              setState(() {
-                this.caminoReyes = caminoReyes!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('caminoReyes', caminoReyes!);
-            });
+                : Container(),
+          ],
+        );
       case 15:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: palabrasRadiantes,
-            title: idioma
-                ? Text(
-                    palabrasRadiantes ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: palabrasRadiantes,
+                title: idioma
+                    ? Text(
+                        palabrasRadiantes ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        palabrasRadiantes ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (palabrasRadiantes) async {
+                  setState(() {
+                    this.palabrasRadiantes = palabrasRadiantes!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('palabrasRadiantes', palabrasRadiantes!);
+                }),
+            palabrasRadiantes
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: palabrasRadiantesNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                palabrasRadiantesNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString('palabrasRadiantesNota',
+                                    palabrasRadiantesNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $palabrasRadiantesNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $palabrasRadiantesNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    palabrasRadiantes ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (palabrasRadiantes) async {
-              setState(() {
-                this.palabrasRadiantes = palabrasRadiantes!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('palabrasRadiantes', palabrasRadiantes!);
-            });
+                : Container(),
+          ],
+        );
       case 16:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: danzante,
-            title: idioma
-                ? Text(
-                    danzante ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: danzante,
+                title: idioma
+                    ? Text(
+                        danzante ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        danzante ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (danzante) async {
+                  setState(() {
+                    this.danzante = danzante!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('danzante', danzante!);
+                }),
+            danzante
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: danzanteNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                danzanteNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'danzanteNota', danzanteNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $danzanteNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $danzanteNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    danzante ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (danzante) async {
-              setState(() {
-                this.danzante = danzante!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('danzante', danzante!);
-            });
+                : Container(),
+          ],
+        );
       case 17:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: juramentada,
-            title: idioma
-                ? Text(
-                    juramentada ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: juramentada,
+                title: idioma
+                    ? Text(
+                        juramentada ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        juramentada ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (juramentada) async {
+                  setState(() {
+                    this.juramentada = juramentada!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('juramentada', juramentada!);
+                }),
+            juramentada
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: juramentadaNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                juramentadaNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'juramentadaNota', juramentadaNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $juramentadaNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $juramentadaNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    juramentada ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (juramentada) async {
-              setState(() {
-                this.juramentada = juramentada!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('juramentada', juramentada!);
-            });
+                : Container(),
+          ],
+        );
       case 18:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: esquirlas,
-            title: idioma
-                ? Text(
-                    esquirlas ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: esquirlas,
+                title: idioma
+                    ? Text(
+                        esquirlas ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        esquirlas ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (esquirlas) async {
+                  setState(() {
+                    this.esquirlas = esquirlas!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('esquirlas', esquirlas!);
+                }),
+            esquirlas
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: esquirlasNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                esquirlasNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'esquirlasNota', esquirlasNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $esquirlasNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $esquirlasNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    esquirlas ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (esquirlas) async {
-              setState(() {
-                this.esquirlas = esquirlas!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('esquirlas', esquirlas!);
-            });
+                : Container(),
+          ],
+        );
       case 19:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: ritmoGuerra,
-            title: idioma
-                ? Text(
-                    ritmoGuerra ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: ritmoGuerra,
+                title: idioma
+                    ? Text(
+                        ritmoGuerra ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        ritmoGuerra ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (ritmoGuerra) async {
+                  setState(() {
+                    this.ritmoGuerra = ritmoGuerra!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('ritmoGuerra', ritmoGuerra!);
+                }),
+            ritmoGuerra
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: ritmoGuerraNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                ritmoGuerraNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'ritmoGuerraNota', ritmoGuerraNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $ritmoGuerraNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $ritmoGuerraNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    ritmoGuerra ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (ritmoGuerra) async {
-              setState(() {
-                this.ritmoGuerra = ritmoGuerra!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('ritmoGuerra', ritmoGuerra!);
-            });
+                : Container(),
+          ],
+        );
       case 20:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: ocaso,
-            title: idioma
-                ? Text(
-                    ocaso ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: ocaso,
+                title: idioma
+                    ? Text(
+                        ocaso ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        ocaso ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (ocaso) async {
+                  setState(() {
+                    this.ocaso = ocaso!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('ocaso', ocaso!);
+                }),
+            ocaso
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: ocasoNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                ocasoNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString('ocasoNota', ocasoNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $ocasoNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $ocasoNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    ocaso ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (ocaso) async {
-              setState(() {
-                this.ocaso = ocaso!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('ocaso', ocaso!);
-            });
+                : Container(),
+          ],
+        );
       case 21:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: arena,
-            title: idioma
-                ? Text(
-                    arena ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: arena,
+                title: idioma
+                    ? Text(
+                        arena ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        arena ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (arena) async {
+                  setState(() {
+                    this.arena = arena!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('arena', arena!);
+                }),
+            arena
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: arenaNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                arenaNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString('arenaNota', arenaNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $arenaNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $arenaNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    arena ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (arena) async {
-              setState(() {
-                this.arena = arena!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('arena', arena!);
-            });
+                : Container(),
+          ],
+        );
       case 22:
-        return CheckboxListTile(
-            checkColor: Colors.black,
-            activeColor: Colors.white,
-            value: silencio,
-            title: idioma
-                ? Text(
-                    silencio ? "Completed" : "Pending",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
+        return Column(
+          children: [
+            CheckboxListTile(
+                checkColor: Colors.black,
+                activeColor: Colors.white,
+                value: silencio,
+                title: idioma
+                    ? Text(
+                        silencio ? "Completed" : "Pending",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      )
+                    : Text(
+                        silencio ? "Completado" : "Pendiente",
+                        style:
+                            const TextStyle(fontSize: 24, color: Colors.white),
+                      ),
+                onChanged: (silencio) async {
+                  setState(() {
+                    this.silencio = silencio!;
+                  });
+                  this.setState(() {});
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('silencio', silencio!);
+                }),
+            silencio
+                ? Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          idioma
+                              ? Text("Rate: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20))
+                              : Text("Nota: ",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                          DropdownButton<String>(
+                            value: silencioNota,
+                            dropdownColor: Colors.black87,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: const Icon(Icons.star, color: Colors.white),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.white),
+                            underline: Container(
+                              //height: 2,
+                              color: Colors.grey[200],
+                            ),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                silencioNota = newValue.toString();
+                              });
+                              setState(() async {
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setString(
+                                    'silencioNota', silencioNota);
+                              });
+                            },
+                            items: <String>[
+                              '0',
+                              '1',
+                              '2',
+                              '3',
+                              '4',
+                              '5',
+                              '6',
+                              '7',
+                              '8',
+                              '9',
+                              '10'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text("       $value ",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white)),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent),
+                          onPressed: () async {
+                            Uint8List _imagefile =
+                                imageData.buffer.asUint8List();
+                            //guardar el archivo en el directorio principal de la aplicacion
+                            MimeType type = MimeType.PNG;
+                            String path = await FileSaver.instance.saveFile(
+                                "image-compartir", _imagefile, "png",
+                                mimeType: type);
+                            //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                            final file = File(path);
+                            GallerySaver.saveImage(file.path);
+                            !idioma
+                                ? await Share.shareFiles([(file.path)],
+                                    text:
+                                        '"$name" completo. Valoración: $silencioNota ☆. COSMERE, encontranos en Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere')
+                                : await Share.shareFiles([(file.path)],
+                                    text:
+                                        'Completed "$name". Rate: $silencioNota ☆. COSMERE, find us in the Play Store! https://play.google.com/store/apps/details?id=com.soludev.cosmere');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              idioma
+                                  ? Text("Share",
+                                      style: TextStyle(fontSize: 20))
+                                  : Text("Compartir",
+                                      style: TextStyle(fontSize: 20)),
+                              SizedBox(width: 10),
+                              Icon(Icons.share),
+                            ],
+                          )),
+                    ],
                   )
-                : Text(
-                    silencio ? "Completado" : "Pendiente",
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-            onChanged: (silencio) async {
-              setState(() {
-                this.silencio = silencio!;
-              });
-              this.setState(() {});
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool('silencio', silencio!);
-            });
-
+                : Container(),
+          ],
+        );
       default:
         return CheckboxListTile(
             checkColor: Colors.black,
