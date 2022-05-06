@@ -83,8 +83,6 @@ class _HomeState extends State<Home> {
   final GlobalKey _key2 = GlobalKey();
   final GlobalKey _key3 = GlobalKey();
 
-  String _dropdownValue = "0";
-
   void obtenerNotas() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString('elantrisNota') == null) {
@@ -405,7 +403,7 @@ class _HomeState extends State<Home> {
   void initState() {
     rootBundle.load('assets/images/compartir.png').then((data) {
       setState(() {
-        this.imageData = data;
+        imageData = data;
       });
     });
     obtenerNotas();
@@ -461,17 +459,17 @@ class _HomeState extends State<Home> {
       opacityShadow: 0.8,
       onFinish: () {
         prefs.setBool('tutorial', true);
-        print("finish");
+        debugPrint("finish");
       },
       onClickTarget: (target) {
-        print('onClickTarget: $target');
+        debugPrint('onClickTarget: $target');
       },
       onSkip: () {
         prefs.setBool('tutorial', true);
-        print("skip");
+        debugPrint("skip");
       },
       onClickOverlay: (target) {
-        print('onClickOverlay: $target');
+        debugPrint('onClickOverlay: $target');
       },
     )..show();
   }
@@ -485,48 +483,46 @@ class _HomeState extends State<Home> {
         contents: [
           TargetContent(
               align: ContentAlign.bottom,
-              child: Container(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    Text(
-                      "STORE YOUR PROGRESS",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 30.0),
-                    ),
-                    Text(
-                      "ALMACENA TU PROGRESO",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                          fontSize: 20.0),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 30.0),
-                      child: Text(
-                        "Access the description of each book, mark the completed ones and save your progress.",
-                        style: TextStyle(color: Colors.white, fontSize: 15.0),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ),
-                    Text(
-                      "Accede a la descripción de cada libro, marca los completados y guarda tu progreso.",
-                      style: TextStyle(color: Colors.grey, fontSize: 12.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Text(
+                    "STORE YOUR PROGRESS",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 30.0),
+                  ),
+                  Text(
+                    "ALMACENA TU PROGRESO",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                        fontSize: 20.0),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 30.0),
+                    child: Text(
+                      "Access the description of each book, mark the completed ones and save your progress.",
+                      style: TextStyle(color: Colors.white, fontSize: 15.0),
                       textAlign: TextAlign.justify,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: SizedBox(
-                          width: 50,
-                          child: Image(
-                              image: AssetImage('assets/images/guardado.png'))),
-                    )
-                  ],
-                ),
+                  ),
+                  Text(
+                    "Accede a la descripción de cada libro, marca los completados y guarda tu progreso.",
+                    style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                    textAlign: TextAlign.justify,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: SizedBox(
+                        width: 50,
+                        child: Image(
+                            image: AssetImage('assets/images/guardado.png'))),
+                  )
+                ],
               ))
         ],
       ),
@@ -539,40 +535,38 @@ class _HomeState extends State<Home> {
         contents: [
           TargetContent(
             align: ContentAlign.bottom,
-            child: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  Text(
-                    "COSMERE TIME LINE",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 30.0),
-                  ),
-                  Text(
-                    "LÍNEA TEMPORAL DEL COSMERE",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                        fontSize: 20.0),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 30.0),
-                    child: Text(
-                      "Follow the lines for a reading according to the recommended order. However, you can start with 'The Final Empire' or 'Warbreaker'.",
-                      style: TextStyle(color: Colors.white, fontSize: 15.0),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
-                  Text(
-                    "Sigue las líneas para una lectura de acuerdo al orden recomendado. Sin embargo, se puede comenzar por 'El imperio final' o 'El aliento de los dioses'.",
-                    style: TextStyle(color: Colors.grey, fontSize: 12.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const <Widget>[
+                Text(
+                  "COSMERE TIME LINE",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 30.0),
+                ),
+                Text(
+                  "LÍNEA TEMPORAL DEL COSMERE",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                      fontSize: 20.0),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 30.0),
+                  child: Text(
+                    "Follow the lines for a reading according to the recommended order. However, you can start with 'The Final Empire' or 'Warbreaker'.",
+                    style: TextStyle(color: Colors.white, fontSize: 15.0),
                     textAlign: TextAlign.justify,
                   ),
-                ],
-              ),
+                ),
+                Text(
+                  "Sigue las líneas para una lectura de acuerdo al orden recomendado. Sin embargo, se puede comenzar por 'El imperio final' o 'El aliento de los dioses'.",
+                  style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                  textAlign: TextAlign.justify,
+                ),
+              ],
             ),
           )
         ],
@@ -588,58 +582,54 @@ class _HomeState extends State<Home> {
       contents: [
         TargetContent(
             align: ContentAlign.top,
-            child: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 40),
-                    child: SizedBox(
-                        width: 150,
-                        child: Image(
-                            image: AssetImage('assets/images/Arcanum.png'))),
-                  ),
-                  Text(
-                    "UNBOUNDED ARCANUM",
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 20, bottom: 40),
+                  child: SizedBox(
+                      width: 150,
+                      child: Image(
+                          image: AssetImage('assets/images/Arcanum.png'))),
+                ),
+                Text(
+                  "UNBOUNDED ARCANUM",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  child: Text(
+                    "ARCANUM ILIMITADO",
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.grey,
                         fontWeight: FontWeight.bold,
-                        fontSize: 30.0),
+                        fontSize: 20.0),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 20.0),
-                    child: Text(
-                      "ARCANUM ILIMITADO",
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             )),
         TargetContent(
             align: ContentAlign.bottom,
-            child: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Text(
-                      "«Arcanum Unlimited» is a short story anthology that compiles the Cosmere-related stories that Brandon Sanderson has published over the years.\nAlthough some are stand-alone stories that can be enjoyed on their own, others require you to have previously read some of the Cosmere novels. Cosmere. Read them following the white lines.",
-                      style: TextStyle(color: Colors.white, fontSize: 15.0),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
-                  Text(
-                    "«Arcanum Ilimitado» es una antología de relatos que recopila las historias relacionadas con el Cosmere que Brandon Sanderson ha publicado a lo largo de los años.\nAunque algunos son relatos independientes que se pueden disfrutar por separado, otras requieren haber leído previamente algunas novelas del Cosmere. Leelos siguiendo las líneas blancas.",
-                    style: TextStyle(color: Colors.grey, fontSize: 12.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Text(
+                    "«Arcanum Unlimited» is a short story anthology that compiles the Cosmere-related stories that Brandon Sanderson has published over the years.\nAlthough some are stand-alone stories that can be enjoyed on their own, others require you to have previously read some of the Cosmere novels. Cosmere. Read them following the white lines.",
+                    style: TextStyle(color: Colors.white, fontSize: 15.0),
                     textAlign: TextAlign.justify,
                   ),
-                ],
-              ),
+                ),
+                Text(
+                  "«Arcanum Ilimitado» es una antología de relatos que recopila las historias relacionadas con el Cosmere que Brandon Sanderson ha publicado a lo largo de los años.\nAunque algunos son relatos independientes que se pueden disfrutar por separado, otras requieren haber leído previamente algunas novelas del Cosmere. Leelos siguiendo las líneas blancas.",
+                  style: TextStyle(color: Colors.grey, fontSize: 12.0),
+                  textAlign: TextAlign.justify,
+                ),
+              ],
             ))
       ],
       shape: ShapeLightFocus.Circle,
@@ -669,18 +659,18 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.transparent,
       ),
       drawer: Drawer(
-        backgroundColor: Color.fromARGB(255, 0, 18, 36),
+        backgroundColor: const Color.fromARGB(255, 0, 18, 36),
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
+            const Padding(
+              padding: EdgeInsets.only(top: 20),
               child: Image(image: AssetImage('assets/images/drawer.png')),
             ),
             !idioma
-                ? Image(image: AssetImage('assets/images/info_esp.png'))
-                : Image(image: AssetImage('assets/images/info_ing.png')),
+                ? const Image(image: AssetImage('assets/images/info_esp.png'))
+                : const Image(image: AssetImage('assets/images/info_ing.png')),
             Padding(
               padding: const EdgeInsets.only(
                   top: 70, left: 100, right: 100, bottom: 50),
@@ -697,12 +687,14 @@ class _HomeState extends State<Home> {
                     });
                   },
                   child: idioma
-                      ? Image(image: AssetImage('assets/images/argentina.png'))
-                      : Image(image: AssetImage('assets/images/eeuu.png')),
+                      ? const Image(
+                          image: AssetImage('assets/images/argentina.png'))
+                      : const Image(
+                          image: AssetImage('assets/images/eeuu.png')),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
                 height: 100,
                 child: Image(
                     image: AssetImage('assets/images/soludev_logo_mono.png'))),
@@ -1757,11 +1749,11 @@ class _HomeState extends State<Home> {
                       child: GestureDetector(
                         onTap: () async {
                           const url = "https://soludevs.web.app/";
-                          if (await canLaunch(url))
+                          if (await canLaunch(url)) {
                             await launch(url);
-                          else
-                            // can't launch url, there is some error
+                          } else {
                             throw "Could not launch $url";
+                          }
                         },
                         child: const Image(
                             image: AssetImage(
@@ -1913,10 +1905,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -1957,7 +1949,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -1990,12 +1982,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -2037,10 +2029,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -2081,7 +2073,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -2114,12 +2106,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -2161,10 +2153,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -2205,7 +2197,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -2238,12 +2230,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -2285,10 +2277,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -2329,7 +2321,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -2362,12 +2354,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -2409,10 +2401,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -2453,7 +2445,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -2486,12 +2478,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -2533,10 +2525,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -2577,7 +2569,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -2610,12 +2602,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -2657,10 +2649,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -2701,7 +2693,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -2734,12 +2726,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -2781,10 +2773,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -2824,7 +2816,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -2857,12 +2849,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -2904,10 +2896,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -2948,7 +2940,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -2981,12 +2973,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -3028,10 +3020,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -3072,7 +3064,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -3105,12 +3097,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -3152,10 +3144,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -3196,7 +3188,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -3229,12 +3221,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -3276,10 +3268,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -3320,7 +3312,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -3353,12 +3345,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -3400,10 +3392,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -3444,7 +3436,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -3477,12 +3469,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -3524,10 +3516,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -3568,7 +3560,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -3601,12 +3593,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -3648,10 +3640,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -3692,7 +3684,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -3725,12 +3717,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -3772,10 +3764,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -3816,7 +3808,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -3849,12 +3841,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -3896,10 +3888,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -3940,7 +3932,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -3973,12 +3965,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -4020,10 +4012,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -4064,7 +4056,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -4097,12 +4089,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -4144,10 +4136,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -4188,7 +4180,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -4221,12 +4213,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -4268,10 +4260,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -4311,7 +4303,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -4344,12 +4336,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -4391,10 +4383,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -4434,7 +4426,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -4467,12 +4459,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
@@ -4514,10 +4506,10 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           idioma
-                              ? Text("Rate: ",
+                              ? const Text("Rate: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20))
-                              : Text("Nota: ",
+                              : const Text("Nota: ",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                           DropdownButton<String>(
@@ -4558,7 +4550,7 @@ class _HomeState extends State<Home> {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text("       $value ",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 20, color: Colors.white)),
                               );
                             }).toList(),
@@ -4591,12 +4583,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               idioma
-                                  ? Text("Share",
+                                  ? const Text("Share",
                                       style: TextStyle(fontSize: 20))
-                                  : Text("Compartir",
+                                  : const Text("Compartir",
                                       style: TextStyle(fontSize: 20)),
-                              SizedBox(width: 10),
-                              Icon(Icons.share),
+                              const SizedBox(width: 10),
+                              const Icon(Icons.share),
                             ],
                           )),
                     ],
