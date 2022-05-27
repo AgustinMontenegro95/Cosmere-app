@@ -50,7 +50,8 @@ class _HomeState extends State<Home> {
       ritmoGuerra = false,
       ocaso = false,
       silencio = false,
-      arena = false;
+      arena = false,
+      metalPerdido = false;
 
   String elantrisNota = "0",
       almaEmperadorNota = "0",
@@ -73,7 +74,8 @@ class _HomeState extends State<Home> {
       ritmoGuerraNota = "0",
       ocasoNota = "0",
       silencioNota = "0",
-      arenaNota = "0";
+      arenaNota = "0",
+      metalPerdidoNota = "0";
 
   late TutorialCoachMark tutorialCoachMark;
   List<TargetFocus> targets = [];
@@ -239,6 +241,13 @@ class _HomeState extends State<Home> {
         arenaNota = prefs.getString('arenaNota')!;
       });
     }
+    if (prefs.getString('metalPerdidoNota') == null) {
+      metalPerdidoNota = "0";
+    } else {
+      setState(() {
+        metalPerdidoNota = prefs.getString('metalPerdidoNota')!;
+      });
+    }
   }
 
   void obtenerLibros() async {
@@ -395,6 +404,13 @@ class _HomeState extends State<Home> {
     } else {
       setState(() {
         arena = prefs.getBool('arena')!;
+      });
+    }
+    if (prefs.getBool('metalPerdido') == null) {
+      metalPerdido = false;
+    } else {
+      setState(() {
+        metalPerdido = prefs.getBool('metalPerdido')!;
       });
     }
   }
@@ -1592,8 +1608,8 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Positioned(
-                bottom: 300,
-                left: 10,
+                bottom: 285,
+                left: 1,
                 child: AvatarGlow(
                   endRadius: 60.0,
                   child: Material(
@@ -1636,7 +1652,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Positioned(
-                bottom: 190,
+                bottom: 150,
                 right: 37,
                 child: AvatarGlow(
                   endRadius: 60.0,
@@ -1680,8 +1696,8 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Positioned(
-                bottom: 90,
-                left: 71,
+                bottom: 70,
+                left: 35,
                 child: AvatarGlow(
                   endRadius: 60.0,
                   child: Material(
@@ -1718,6 +1734,48 @@ class _HomeState extends State<Home> {
                         backgroundColor:
                             silencio ? Colors.green[300] : Colors.grey[100],
                         radius: 15.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 215,
+                left: 145,
+                child: AvatarGlow(
+                  endRadius: 60.0,
+                  child: Material(
+                    // Replace this child with your own
+                    elevation: 8.0,
+                    shape: const CircleBorder(),
+                    child: GestureDetector(
+                      onTap: () {
+                        showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) {
+                              if (idioma) {
+                                return libroPorSalir(
+                                    "The lost metal",
+                                    "The Lost Metal is the final installment of the Wax and Wayne saga, marking the end of Era 2 and welcoming the Era 3 trilogy. It will be released on November 15, 2022.",
+                                    "theLostMetal.png");
+                              } else {
+                                return libroPorSalir(
+                                    "El metal perdido",
+                                    "El metal perdido es la última entrega de la saga de Wax y Wayne, que marca el final de la Era 2 y da la bienvenida a la trilogía de la Era 3. Saldrá a la venta el 15 de noviembre de 2022.",
+                                    "theLostMetal.png");
+                              }
+                            });
+                      },
+                      child: CircleAvatar(
+                        child: metalPerdido
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : const Icon(Icons.timelapse_sharp,
+                                color: Colors.white),
+                        backgroundColor: metalPerdido
+                            ? Colors.green[300]
+                            : Colors.orange[300],
+                        radius: 20.0,
                       ),
                     ),
                   ),
@@ -1865,6 +1923,92 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget libroPorSalir(String titulo, String des, String img) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.only(
+                left: 20, top: 45 + 20, right: 20, bottom: 20),
+            margin: const EdgeInsets.only(top: 45),
+            decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20),
+                // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [
+                  const BoxShadow(
+                      color: Color.fromARGB(255, 133, 125, 125),
+                      offset: Offset(0, 10),
+                      blurRadius: 10),
+                ]),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const SizedBox(height: 50),
+                FittedBox(
+                  fit: BoxFit.cover,
+                  child: Text(
+                    titulo.toString(),
+                    style: GoogleFonts.trispace(
+                      textStyle: const TextStyle(
+                          fontSize: 35, color: Colors.white, letterSpacing: .5),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(des.toString(),
+                      style: GoogleFonts.trispace(
+                        textStyle: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            letterSpacing: .5),
+                      ),
+                      textAlign: TextAlign.justify),
+                ),
+                const SizedBox(
+                  height: 22,
+                ),
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: IconButton(
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.arrow_forward_ios))),
+              ],
+            ),
+          ),
+          Positioned(
+            left: 70,
+            right: 70,
+            child: SizedBox(
+              width: 20,
+              height: 140,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(45)),
+                child: Image(
+                  image: AssetImage('assets/images/$img'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
